@@ -1,0 +1,42 @@
+url = "/partners"
+layout = "default"
+title = "Partners"
+is_hidden = 0
+robot_index = "index"
+robot_follow = "follow"
+
+==
+<?php
+use Pensoft\Partners\Models\Partners;
+
+function onStart(){
+	$this['partners'] =  Partners::where('type', 1)->get();
+}
+?>
+==
+<h1 class="underline">Partners</h1>
+
+<div class="container">
+    {% for partner in partners %}
+    <div class="col-xs-12 partner-item">
+        <div class="row">
+            <div class="col-xs-12 col-md-2 start-md center-xs partner_cover"><img src="{{partner.cover.path}}"></div>
+            <div class="col-xs-12 col-md-8 start-md center-xs partner_title">
+                <div class="instituion-title">{{partner.instituion}}</div>
+            </div>
+            <div class="col-xs-12 col-md-2 end-md start-xs partner_link">
+            <div class="button_su">
+                <span class="su_button_circle">
+                </span>
+                <a href="{{partner.instituion_url}}" class="button_su_inner">
+                    <span class="button_text_container">
+                    Visit website
+                    </span>
+                </a>
+            </div>
+            </div>
+            <div class="col-xs-12 partner_description">{{partner.content|raw}}</div>
+        </div>
+    </div>
+    {% endfor %}
+</div>

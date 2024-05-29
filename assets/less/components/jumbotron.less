@@ -1,0 +1,193 @@
+.jumbotron {
+    position: absolute;
+    z-index: 100;
+
+    .breakpoint-large-down({
+        padding-top: 95px;
+    });
+}
+
+.jumbotron p{
+  color: #ffffff!important;
+}
+
+.background .container{
+  padding: 0 5px;
+}
+
+
+.home .background{
+    img{
+        max-height: 362px;
+    }
+}
+
+.container:has(.tabs){
+    .breakpoint-large-down({
+        padding-top: 20px;
+    });
+}
+
+
+.about-bg-container{
+
+    .bg-row{
+        margin-top: 200px;
+        margin-bottom: 160px;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        position: relative;
+        .bg-content-container{
+            width: 65%;
+            padding: 40px;
+            position: absolute;
+            right: 0;
+            top: -100px;
+            //background: transparent linear-gradient(246deg, #9BC622 0%, #01BDD6 100%) 0% 0% no-repeat padding-box;
+            background: url("../../assets/images/background.svg") top center no-repeat;
+            background-size: cover;
+            border-radius: 0px 10px 10px 0px;
+            color: @white-color;
+            h1{
+                color: @white-color;
+            }
+            .breakpoint-large-down({
+                width: 100%;
+                position: unset;
+                order: 0;
+                padding: 18px 8px;
+
+            });
+        }
+        .img-container{
+            .breakpoint-large-down({
+                width: 100%;
+                height: auto;
+                order: 1;
+                img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            });
+        }
+        .breakpoint-large-down({
+            margin-top: 32px;
+        });
+    }
+
+    .about-bg-row{
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        position: relative;
+        margin-bottom: 160px;
+
+        .breakpoint-large-down({
+            flex-direction: column;
+        });
+        .bg-content-container{
+            width: 65%;
+            padding: 40px 60px;
+            z-index: 1;
+            //background: transparent linear-gradient(250deg, #9BC622 0%, #01BDD6 100%) 0% 0% no-repeat padding-box;
+            background: url("../../assets/images/background2.svg") top center no-repeat;
+            background-size: cover;
+            border-radius: 0px 10px 10px 0px;
+            color: @white-color;
+            h1{
+                color: @white-color;
+            }
+            .breakpoint-large-down({
+                width: fit-content;
+                position: unset;
+                order: 0;
+                padding: 18px 8px;
+            });
+        }
+        .img-container{
+            position: absolute;
+            right: 0;
+            .breakpoint-large-down({
+                position: relative;
+                width: 100%;
+                height: auto;
+                order: 1;
+                img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            });
+        }
+    }
+}
+
+.obj-bg {
+    background-color: #BAE3E826;
+
+    .obj-row {
+        .objective {
+            margin-bottom: 32px;
+            margin-right: 40px;
+            padding: 20px 40px;
+            background: #FFFFFF;
+            box-shadow: 0px 0px 20px #1B869426;
+            border-radius: 10px;
+
+            .obj-text {
+                position: relative;
+                display: flex;
+                align-items: center;
+            }
+
+            .obj-img {
+                position: relative;
+
+                &:before {
+                    position: absolute;
+                    content: "";
+                    display: inline-block;
+                    width: 62px;
+                    height: 62px;
+                    background-size: 62px;
+                    left: 0;
+                    top: 0;
+
+                    .breakpoint-large-down({
+                        position: unset;
+                    });
+                }
+
+                .breakpoint-large-down({
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-bottom: 20px;
+                });
+            }
+
+            &[data-index="1"] .obj-img:before {
+                background: url("../../assets/images/objective-icon-1.svg") center center no-repeat;
+            }
+            &[data-index="2"] .obj-img:before {
+                background: url("../../assets/images/objective-icon-2.svg") center center no-repeat;
+            }
+            &[data-index="3"] .obj-img:before {
+                background: url("../../assets/images/objective-icon-3.svg") center center no-repeat;
+            }
+            &[data-index="4"] .obj-img:before {
+                background: url("../../assets/images/objective-icon-4.svg") center center no-repeat;
+            }
+            &[data-index="5"] .obj-img:before {
+                background: url("../../assets/images/objective-icon-5.svg") center center no-repeat;
+            }
+
+            .breakpoint-large-down({
+                margin-right: 0;
+                padding: 20px 8px;
+            });
+        }
+    }
+}

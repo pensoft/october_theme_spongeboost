@@ -1,0 +1,78 @@
+.profile-item{
+    .contact_info {
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        box-shadow: 0px 0px 20px #1B869426;
+        border-radius: 10px;
+        margin-bottom: 40px;
+        padding: 20px 0 0 0;
+        .email_container{
+            background: transparent linear-gradient(266deg, #9BC622 0%, #01BDD6 100%, #015F6B 100%) 0% 0% no-repeat padding-box;
+            border-radius: 0px 0px 10px 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 4px 0;
+            .contact_mail{
+                text-align: center;
+                font-size: 18px;
+                a{
+                    display: flex;
+                    align-items: center;
+                    color: @white-color !important;
+                    i{
+                        margin-right: 16px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                    i:before{
+                        content: '' !important;
+                        position: absolute;
+                        display: inline-block;
+                        background: url("../../assets/images/email-icon.svg") center center no-repeat;
+                        background-size: 20px;
+                        width: 20px;
+                        height: 20px;
+                    }
+                }
+            }
+        }
+        .coordinator_image{
+            .breakpoint-large-down({
+                margin-bottom: 6px;
+                display: flex;
+                justify-content: center;
+            });
+            img{
+                object-fit: cover;
+                width: 129px;
+                height: 129px;
+                margin-bottom: 6px;
+            }
+        }
+        .coordinator_info{
+            padding: 0;
+            .card_title, h3{
+                display: flex;
+                justify-content: start;
+                padding: 0;
+                margin: 0;
+                .breakpoint-large-down({
+                    margin-bottom: 6px;
+                    display: flex;
+                    justify-content: center;
+                });
+            }
+            .card_title{
+                color: #01BDD6;
+                font-size: 18px;
+            }
+            h3{
+                font-size: 22px;
+                color: #1E1E19;
+            }
+        }
+    }
+}
+

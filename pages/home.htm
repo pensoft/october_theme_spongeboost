@@ -1,0 +1,153 @@
+url = "/"
+layout = "default"
+title = "SpongeBoost"
+is_hidden = 0
+meta_description = "The SpongeBoost project"
+robot_index = "index"
+robot_follow = "follow"
+
+[jumbotron our-mission]
+jumbotron = "our-mission"
+title = 0
+background = "transperant"
+templates = "template3"
+description_limit = 0
+
+[jumbotron numbers]
+jumbotron = "numbers"
+title = 0
+background = "transperant"
+templates = "template3"
+description_limit = 0
+
+==
+<?php
+use Pensoft\Articles\Models\Article;
+use Pensoft\Calendar\Models\Entry;
+use Carbon\Carbon;
+
+
+function onStart(){
+
+    $this['entries'] = Entry::where('end', '>', Carbon::now())->where('show_on_timeline', true)->where('is_internal', false)->orderBy('start', 'asc')->take(6)->get();
+
+    $this['highlights'] = Article::news()->where('published', 'true')->descPublished()->take(3)->get()->map(function($item){
+        $item->content = str_limit(strip_tags($item->content), 90);
+        $item->href = $item->slug;
+        return $item;
+    });
+}
+
+?>
+==
+<!-- Mission -->
+<div class="container-fluid mission-container">
+    {% component "our-mission" %}
+</div>
+
+<!-- Numbers -->
+<div class="container-fluid project-numbers-container">
+    {% component "numbers" %}
+</div>
+
+<!-- News -->
+{% if highlights.count %}
+<div class="container-fluid latest-news-container">
+    <div class="container mb-0 pb-0">
+        <div class="col-xs-12 bubble-title">News</div>
+        <div class="row">
+            <div class="col-md-6 col-xs-12">
+                <h1>Latest news</h1>
+            </div>
+            <div class="col-md-6 col-xs-12 text-right">
+                <div class="button_su">
+                    <span class="su_button_circle">
+                    </span>
+                    <a href="{{'news'|page}}" class="button_su_inner">
+                      <span class="button_text_container">
+                        Read more
+                      </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-1 pt-0">
+        <div class="row news-row">
+            <div class="col-md-5 col-xs-12 latest-news">
+                {% if highlights|length %}
+                    <div class="news-card">
+                        <div class="news-card-content">
+                            <div class="img-container">
+                                <a href="{{'news'|page}}/{{highlights[0].slug}}">
+                                    <img src="{{ highlights[0].cover.thumb(475, 283, {'mode': 'crop'}) }}" alt="{{ highlights[0].title }}">
+                                </a>
+                            </div>
+                            <div class="content-container">
+                                <a href="{{'news'|page}}/{{highlights[0].slug}}">
+                                    <h3>{{ highlights[0].title|length > 70 ? highlights[0].title|striptags|slice(0, 70)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : highlights[0].title|striptags|replace({"&nbsp;": " ", ".": ". "})  }}</h3>
+                                </a>
+                                <div class="highlight-content">{{ highlights[0].content | raw }}</div>
+                                <a href="{{'news'|page}}/{{highlights[0].slug}}" class="read-more">Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-md-7 col-xs-12 highlight-news">
+                <div class="col-xs-12 highlight-news-container">
+                    {% for article in highlights|slice(1, 2) %}
+                        <div class="row news-card">
+                            <div class="col-md-4 img-container">
+                                <a href="{{'news'|page}}/{{article.slug}}">
+                                    <img src="{{ article.cover.thumb(205, 187, {'mode': 'crop'}) }}" alt="{{ article.title }}">
+                                </a>
+                            </div>
+                            <div class="col-md-8 content-container">
+                                <div class="col-xs-12"><a href="{{'news'|page}}/{{article.slug}}"><h3>{{ article.title|length > 70 ? article.title|striptags|slice(0, 70)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : article.title|striptags|replace({"&nbsp;": " ", ".": ". "})  }}</h3></a></div>
+                                <div class="col-xs-12 highlight-content">{{ article.content | raw}}</div>
+                                <div class="col-xs-12"><a href="{{'news'|page}}/{{article.slug}}" class="read-more">Read more</a></div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
+<!-- Events -->
+{% if entries.count %}
+<div class="container-fluid entries-container">
+    <div class="container mb-0 pb-0">
+        <div class="col-xs-12 bubble-title">Events</div>
+        <div class="row events-head">
+            <div class="start-xs events-title">
+                <h1>Upcoming events</h1>
+            </div>
+            <div class="slick-arrows end-xs">
+                <div class="slick-prev"></div>
+                <div class="slick-next"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container pt-0 mt-0">
+        <div class="entries-carousel">
+            {% for entry in entries %}
+            <div class="row home-event">
+                <div class="col-xs-12 event-head">
+                    <div class="event-title">{{ entry.title|length > 70 ? entry.title|striptags|slice(0, 70)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : entry.title|striptags|replace({"&nbsp;": " ", ".": ". "})  }}</div>
+                </div>
+                <div class="col-xs-12 event-body">
+                    <div class="event-start">{{ entry.start|date("d F Y") }}</div>
+                    <div class="event-location">{{ entry.place }}</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}

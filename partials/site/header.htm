@@ -1,0 +1,100 @@
+[menu]
+start = "id-1"
+activeNode = 0
+listItemClasses = "nav-item"
+primaryClasses = "navbar-nav"
+secondaryClasses = "dropdown-menu"
+numberOfLevels = 2
+
+[jumbotron]
+jumbotron = "intro"
+background = "transperant"
+templates = "template1"
+description_limit = 0
+==
+
+<nav class="pr-1 pl-1 navbar fixed" id="headernavbar">
+    <div id="menuToggle">
+        <input type="checkbox" />
+        <span></span>
+        <span></span>
+        <span></span>
+        {% component 'menu' %}
+    </div>
+    <a href="{{'home'|page}}" class="navbar-brand" style="background: url('{{ this.theme.site_logo.getPath() }}') center no-repeat; background-size: contain;">
+
+    </a>
+
+    <div class="navbar-collapse collapse end-xs" id="headerNavbarNav" style="display: none;">
+        {% component 'menu' %}
+
+    </div>
+    <div class="search-and-social-media hidden-xs">
+        <ul class="navbar-nav">
+            <li class="nav-item social">
+
+                <a class="pr p-search middle search-btn" onclick="showSearchForm();"></a>
+            </li>
+        </ul>
+    </div>
+    <div id="search" class="search" style="display: none;">
+        <div class="container">
+            <div class="close-search" onclick="hideSearchForm();">&#10006;</div>
+            <form class="input-group align-items-start" action="{{ url('search')}}" method="get">
+                <input class="form-control search_input" style="color: #000;" name="q" type="text" autocomplete="on" placeholder="Search">
+                <button class="btn btn-link pr p-search big text-grey-search-btn" type="submit"></button>
+            </form>
+        </div>
+    </div>
+
+</nav>
+
+
+
+{% if this.theme.header_image %}
+<div class="header-image {{page_id}}">
+    {% if page_id == 'home' %}
+    <video autoplay loop muted playsinline class="header-video-media">
+        <source src="{{ 'bg-video.mp4'|media }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <!-- <div class="header-image-bar"></div> -->
+    <div class="jumbotron" data-aos="fade-up">
+        <div class="container">
+            <div class="intro" data-aos="zoom-out-up">
+                <span class="welcome">WELCOME TO SpongeBoost</span>
+                <h1 >{{tag_line|raw}}</h1>
+                <div class="row">
+                    <div class="col-md-6 col-xs-12">
+                        <div class="button_su">
+                            <span class="su_button_circle">
+                            </span>
+                            <a href="{{'about'|page}}" class="button_su_inner">
+                              <span class="button_text_container">
+                                Learn more
+                              </span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xs-12">
+                        <div class="video_btn">
+                            <a id="play-video" class="video-play-button" href="{{'videos'|page}}">
+                                <span></span>
+                            </a>
+                            <a href="{{'videos'|page}}" class="watch_video_label">Watch video</a> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+        <div class="header-image-bar">
+            <h1 class="underline white">{%if page_title%} {{page_title}} {%else%} {{site_name}} {%endif%}</h1>
+            <video autoplay loop muted playsinline class="header-video">
+                <source src="{{ 'bg-video.mp4'|media }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    {%endif%}
+</div>
+{% endif %}

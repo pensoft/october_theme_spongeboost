@@ -1,0 +1,35 @@
+url = "/internal-repository/forms"
+layout = "default"
+title = "Reporting forms"
+
+[session]
+security = "user"
+allowedUserGroups[] = "internal-users"
+allowedUserGroups[] = "registered"
+allowedUserGroups[] = "guest"
+redirect = "home"
+==
+{% component 'session' %}
+<h1 class="underline">Internal repository</h1>
+<div class="container">
+
+	<div class="row middle-xs between-xs">
+		<div class="col-xs-12 col-md-5 mt-1 mb-1">
+
+		</div>
+
+		<div class="col-xs-12 col-md-3 end-xs">
+			<a href="{{url('internal-repository')}}" class="back"> <div class="arrow-left end-xs"></div> &nbsp;Back to documents</a>
+		</div>
+
+		<div class="col-xs-12 col-md-12 end-xs">
+			<h1 class="base_heading inner-page">Reporting forms</h1>
+		</div>
+
+
+
+
+
+	</div>
+
+</div>

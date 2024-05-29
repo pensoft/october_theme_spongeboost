@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="372 -57 876 360" style="enable-background:new 372 -57 876 360;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#Rectangle_3985_1_);}
+	.st1{opacity:0.32;fill:#FFFFFF;}
+</style>
+<g id="background" transform="translate(-403 -364)">
+	
+		<linearGradient id="Rectangle_3985_1_" gradientUnits="userSpaceOnUse" x1="1095.7896" y1="604.4818" x2="1094.6746" y2="603.2797" gradientTransform="matrix(876 0 0 -360 -958099 217833)">
+		<stop  offset="0" style="stop-color:#9BC622"/>
+		<stop  offset="1" style="stop-color:#01BDD6"/>
+	</linearGradient>
+	<path id="Rectangle_3985" class="st0" d="M775,307h866c5.5,0,10,4.5,10,10v340c0,5.5-4.5,10-10,10H775l0,0V307L775,307z"/>
+	<circle id="Ellipse_243" class="st1" cx="1329.5" cy="307.5" r="20.5"/>
+	<circle id="Ellipse_244" class="st1" cx="781" cy="310" r="32"/>
+	<circle id="Ellipse_245" class="st1" cx="1120.5" cy="666.5" r="23.5"/>
+	<circle id="Ellipse_246" class="st1" cx="1657.5" cy="568.5" r="23.5"/>
+	<circle id="Ellipse_247" class="st1" cx="1649" cy="366" r="32"/>
+</g>
+</svg>

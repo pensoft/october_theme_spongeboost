@@ -1,0 +1,103 @@
+
+.partner-item{
+    margin-bottom: 40px;
+    background: @white-color;
+    box-shadow: 0px 0px 20px #1B869426;
+    border-radius: 10px;
+    padding: 30px 40px 30px 40px;
+
+    .partner_title{
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        .instituion-title{
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            margin-left: 8px;
+            font-size: 22px;
+            line-height: 1.3em;
+            font-weight: bold;
+            color: #1E1E19;
+            text-align: left;
+            padding: 0 !important;
+        }
+        .breakpoint-large-down({
+            margin-bottom: 20px;
+            justify-content: center;
+        });
+    }
+
+    .partner_cover{
+        display: flex;
+        justify-content: start;
+        align-items: start;
+        text-align: left;
+        width: 192px;
+        max-height: 64px;
+        // border-right: 2px solid #DCDCDC;
+        img{
+            width: 100%;
+            height: auto;
+            max-height: 64px;
+            max-width: 192px;
+            object-fit: none;
+            object-position: center;
+            display: flex;
+            border-right: 2px solid #DCDCDC;
+            .breakpoint-large-down({
+                width: auto;
+                max-width: 100%;
+                object-fit: contain;
+                border-right: none;
+            });
+        }
+        .breakpoint-large-down({
+            margin-bottom: 20px;
+            justify-content: center;
+            border: none;
+        });
+    }
+
+    .partner_description{
+        padding: 20px;
+        position: relative;
+        p{
+            font-size: 18px;
+            font-weight: 1.6em;
+            color: #747474;
+        }
+    }
+
+    .partner_link{
+        .button_su{
+            margin-bottom: 0;
+        }
+        .button_su_inner{
+            .button_text_container{
+              display: flex;
+              align-items: center;
+              position: relative;
+              margin-left: 16px;
+              text-align: center;
+              font-size: 16px;
+              color: @white-color;
+              &:before{
+                position: absolute;
+                content: "";
+                display: inline-block;
+                background: url("../../assets/images/partners-link-button-icon.svg") center center no-repeat;
+                background-size: 14px;
+                width: 14px;
+                height: 14px;
+                left: -20px;
+              }
+            }
+        }
+        .breakpoint-large-down({
+            display: flex;
+            justify-content: center;
+        });
+    }
+
+}

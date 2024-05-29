@@ -1,0 +1,80 @@
+[menu footer_menu]
+start = "id-21"
+activeNode = 0
+listItemClasses = "footer-menu-item"
+primaryClasses = "footer-menu"
+secondaryClasses = "dropdown-menu"
+numberOfLevels = 1
+
+[cookieConsent]
+message = "This website uses cookies to ensure you get the best experience on our website."
+dismiss = "Got it!"
+learnMore = "More info"
+link = "/privacy-policy"
+theme = "dark-bottom"
+
+[jumbotron footer_disclimer]
+jumbotron = "footer"
+background = "transperant"
+templates = "template3"
+description_limit = 0
+==
+<div class="container-fluid border-box dark-background">{% component 'cookieConsent' %}
+    <div class="container">
+        <div class="row top-xs between-xs footer-menu-container">
+
+            <div class="col-md-6 col-xs-12 footer-disclaimer-container footer-right-border">
+                {% if (footer_funds_flag != null or footer_funds_text != '') %}
+                <div class="funding flex-column my-1 my-lg-0 flex-lg-row px-1 align-items-center col-sm col-xs-12">
+                    {% if footer_funds_flag %}
+                    <img class="text mr-0 mr-lg-1" style="height:60px;" src="{{ footer_funds_flag }}"/>
+                    {% endif %}
+                </div>
+                <div class="funding-text">
+                    <p>SpongeBoost receives funding from the European Union's Horizon Europe research and innovation programme under grant agreement No.101112906.</p>
+                    <p>Views and opinions expressed are those of the author(s) only and do not necessarily reflect those of the European Union or the European Climate, Infrastructure and Environment Executive Agency (CINEA). Neither the EU nor CINEA can be held responsible for them.</p>
+                </div>
+                <div class="social-networks">
+                    <div class="icons">
+                        {% if enable_facebook and facebook_url %}
+                        <a href="{{facebook_url}}" target="_blank" class="pr p-secondary p-facebook normal" target="_blank"></a>
+                        {% endif %}
+                        {% if enable_twitter and twitter_url %}
+                        <a href="{{twitter_url}}" target="_blank" class="pr p-secondary p-twitter normal" target="_blank"></a>
+                        {% endif %}
+                        {% if enable_linkedin and linkedin_url %}
+                        <a  href="{{linkedin_url}}" target="_blank" class="pr p-secondary p-linkedin normal" target="_blank"></a>
+                        {% endif %}
+                        {% if enable_youtube and youtube_url %}
+                        <a  href="{{youtube_url}}" target="_blank" class="pr p-secondary p-youtube normal" target="_blank"></a>
+                        {% endif %}
+                        {% if enable_instagram and instagram_url %}
+                        <a  href="{{instagram_url}}" target="_blank" class="pr p-secondary p-instagram normal" target="_blank"></a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="col-md-6 col-xs-12 menu_and_powered">
+                <div class="col-xs-12 footer-logo-container">
+                    <img src="{{ 'assets/images/spon-logo.svg'|theme }}" alt="">
+                </div>
+                <div class="row between-xs footer_menu">
+                    <div class="col-xs-12 col-md-12 start-md center-xs">LINKS</div>
+                    <div class="col-xs-12 col-md-12 start-md center-xs">
+                        {% component 'footer_menu' %}
+                    </div>
+                </div>
+                <div class="row between-xs">
+                    <div class="col-xs-12 powered-by start-md center-xs">
+                        <span>Designed and powered by <a href="https://pensoft.net/" target="_blank">
+                            <img class="pensoft_logo" src="{{ 'assets/images/pensoft-logo.svg'|theme }}" /></a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

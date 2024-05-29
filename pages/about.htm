@@ -1,0 +1,40 @@
+url = "/about"
+layout = "default"
+title = "About"
+is_hidden = 0
+meta_description = "about page"
+seo_keywords = "keywords"
+robot_index = "index"
+robot_follow = "follow"
+
+[siteSearchInclude]
+
+[jumbotron about]
+jumbotron = "about-intro"
+background = "transperant"
+templates = "template3"
+description_limit = 0
+
+[jumbotron background]
+jumbotron = "background"
+background = "transperant"
+templates = "template3"
+description_limit = 0
+
+
+[jumbotron objectives]
+jumbotron = "objectives"
+background = "transperant"
+templates = "template3"
+description_limit = 0
+==
+{% component 'siteSearchInclude' %}
+
+
+<div class="container-fluid about-bg-container">
+   {% component "background" %}
+</div>
+
+<div class="container-fluid obj-bg">
+   {% component "objectives" %}
+</div>
