@@ -29,6 +29,10 @@ $(document).ready(function() {
 		divs.slice(i, i+2).wrapAll( '<div class="col-xs" />');
 	}
 
+
+
+    document.querySelector('.header-image video').playbackRate = 0.7;
+
 	var headerNavbar = $('#headerNavbar');
 	var width100 = $('.width100');
 	var innerWidth = $('body').innerWidth();
@@ -170,15 +174,16 @@ $(document).ready(function() {
 
 	var count = $("h1").text().length;
 
-	$('.subscribe-items a').attr('data-aos', 'fade-up');
+	$('.img-container').attr('data-aos', 'fade-right');
 	// $('.icons a').attr('data-aos', 'fade-up');
-	$('.about h1.display-1').attr('data-aos', 'fade-up');
-	$('h2.underline').attr('data-aos', 'fade-up');
+	$('.objective').attr('data-aos', 'fade-up');
+	$('.accordion-border').attr('data-aos', 'fade-up');
 	$('.news_column').attr('data-aos', 'fade-up');
 	$('.btn.btn-primary').attr('data-aos', 'zoom-in');
 	$('.library-item').attr('data-aos', 'fade-up');
 	$('.entry_item').attr('data-aos', 'fade-up');
 	$('.profile-item').attr('data-aos', 'fade-up');
+	$('.partner-item').attr('data-aos', 'fade-up');
 
     if (width >= 1024) {
         $('#objectives').attr('data-aos', 'fade-right');
@@ -681,7 +686,7 @@ function handlePilotsSVGMapMouseMove(event) {
     var y = event.clientY;
 
     tooltip.style.left = (x + 20) + "px";
-    tooltip.style.top = (y + 20) + "px";
+    tooltip.style.top = (y + 250) + "px";
 
     tooltip.innerHTML = title;
     tooltip.classList.add("active");

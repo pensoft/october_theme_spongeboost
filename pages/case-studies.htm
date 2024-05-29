@@ -3,6 +3,12 @@ layout = "default"
 title = "Case study areas"
 
 [siteSearchInclude]
+
+[jumbotron]
+jumbotron = "case-study"
+background = "translate"
+templates = "template3"
+description_limit = 0
 ==
 <?php
 function onStart(){
@@ -12,7 +18,9 @@ function onStart(){
 ?>
 ==
 {% component 'siteSearchInclude' %}
-<div class="container pilots_background_container">
+{% component 'jumbotron' %}
+<div class="container">
+
     <div class="row top-xs">
         <div class="col-md-6 col-xs-12 pilots">
             {% for key, item in records %}
@@ -32,6 +40,7 @@ function onStart(){
             {% endfor %}
         </div>
         <div class="col-md-6 col-xs-12">
+
             <div class="pilots_svg_map_container">
                 <span class="tooltiptext" id="tooltip">Bulgaria</span>
                 {% partial 'map' %}
