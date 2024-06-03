@@ -19,7 +19,6 @@ title = 0
 background = "transperant"
 templates = "template3"
 description_limit = 0
-
 ==
 <?php
 use Pensoft\Articles\Models\Article;
@@ -37,11 +36,10 @@ function onStart(){
         return $item;
     });
 }
-
 ?>
 ==
 <!-- Mission -->
-<div class="container-fluid mission-container">
+<div class="container-fluid mission-container mt-2">
     {% component "our-mission" %}
 </div>
 

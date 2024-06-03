@@ -15,9 +15,6 @@ a {
     &.no-color{
       color: @green-color;
     }
-    &:hover{
-        //opacity: 0.7;
-    }
     &:focus{
         outline: none;
     }
@@ -172,16 +169,20 @@ ul.pagination{
 
 /* Homepage **/
 .mission-container{
+    .toogle-contact-paragraphs{
+        display: none;
+    }
   .mission-card{
-    justify-content: space-between;
+    // justify-content: space-between;
     display: flex;
     flex-direction: column;
-    padding: 30px 40px;
+    padding: 30px 40px 20px 40px;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: 0px 0px 20px #1B869426;
     border-radius: 10px;
-    min-height: 285px;
+    min-height: 306px;
     position: relative;
+    
     .bubble-title {
       position: absolute;
       top: -20px;
@@ -199,17 +200,23 @@ ul.pagination{
       justify-content: center;
       font-size: 18px;
       line-height: 1.4em;
-      color: #535353;
+      color: #535353!important;
+      text-align: center;
+      font-weight: 500;
+      
     }
     .col-xs-12{
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
+      font-weight: 500;
     }
     .read-more{
       font-size: 18px;
       line-height: 1.4em;
       color: #9BC622;
+      font-weight: 500;
     }
     .breakpoint-large-down({
       margin-bottom: 40px;
@@ -309,7 +316,7 @@ ul.pagination{
   }
 
   .latest-news .news-card{
-    background: #BAE3E826;
+      background: #F4FAFB;
     border-radius: 10px;
     padding: 20px;
     .img-container{
@@ -336,7 +343,7 @@ ul.pagination{
   }
 
   .highlight-news .news-card{
-    background: #BAE3E826;
+    background: #F4FAFB;
     border-radius: 10px;
     padding: 25px 20px;
     .img-container{
@@ -395,7 +402,7 @@ ul.pagination{
     }
 
     .jumbotron{
-        //margin-top: 109px;
+        margin-top: 109px;
         h1{
             font-size: 47px;
             line-height: 1.3em;
@@ -474,13 +481,13 @@ ul.pagination{
         .video_btn{
             display: flex;
             align-items: center;
-            margin-left: 40px;
+            margin-left: 20px;
             white-space: nowrap;
             color: white;
             a{
                 color: white;
                 &.watch_video_label{
-                    margin-left: 20px;
+                    margin-left: 2px;
                 }
                 &:hover{
                     opacity: 0.5;
@@ -610,7 +617,7 @@ ul.pagination{
       line-height: 1.3em;
       color: #1E1E19;
       padding: 20px;
-      background: #BAE3E826;
+      background: #F4FAFB;
       border-radius: 10px;
     }
 

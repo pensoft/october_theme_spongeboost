@@ -1,3 +1,4 @@
+$(window).scroll(animateNumbers);
 var viewed = false;
 
 var width = window.innerWidth;
@@ -727,6 +728,24 @@ function initButtonStyle(){
     $('.btn.btn-primary').addClass('button_su_inner').removeClass('btn-primary');
     $('.col-xs-12.col-md-3.end-xs.end-md').wrapInner('<div class="button_su">');
     $('.library form:has(.button_su_inner)').wrap('<div class="button_su">');
+}
+
+function animateNumbers() {
+	if (isScrolledIntoView($(".numbers")) && !viewed) {
+		viewed = true;
+		$('.count').each(function () {
+			var size = $(this).text().split(".")[1] ? $(this).text().split(".")[1].length : 0;
+			$(this).prop('Counter',0).animate({
+				Counter: $(this).text()
+			}, {
+				duration: 1800,
+				easing: 'swing',
+				step: function (now) {
+					$(this).text(parseFloat(now).toFixed(size));
+				}
+			});
+		});
+	}
 }
 
 init()
