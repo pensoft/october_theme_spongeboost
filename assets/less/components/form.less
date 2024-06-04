@@ -13,6 +13,7 @@
 
         &.inline {
             flex-direction: row;
+
             .field {
                 margin-top: 0;
             }
@@ -31,29 +32,32 @@
         &.inline {
             flex-direction: row;
             width: auto;
+            align-items: center!important;
             input, textarea {
                 width: auto;
             }
         }
         & > label {
             display: block;
-            margin: 0 0 .3rem 0;
+            margin: 0 0 .3rem 9px;
+            white-space: nowrap;
         }
         & > input, textarea, select {
             display: block;
             width: 100%;
             font-size: @font-size;
-            //color: @border-color;
-            //background-color: @white-color;
+            color: @border-color;
+            background: #F6F6F6 0% 0% no-repeat padding-box;
+            border-radius: 5px;
             box-sizing: border-box;
             padding: .555rem 1rem;
             .line-height();
-            //.rounded(12px);
             //border: 0px solid @border-color;
             //border-right-width: 15px;
             //border-right-color: white;
             //box-shadow: 0 0 0 1px @border-color;
             height: 47px;
+            line-height: 1em;
 
             &:focus {
                 outline: none;
@@ -66,31 +70,31 @@
     }
 
     /* Hide the default checkbox */
-    //input[type="checkbox"] {
-    //    visibility: hidden;
-    //    cursor: pointer;
-    //    margin-right: 10px
-    //}
-    //
-    ///* Create a custom checkbox */
-    //.mark {
-    //    position: absolute;
-    //    top: 3px;
-    //    left: 0;
-    //    height: 20px;
-    //    width: 20px;
-    //    background-color: white;
-    //    border: 1px solid @link-color;
-    //    cursor: pointer;
-    //}
+    input[type="checkbox"] {
+        visibility: hidden;
+        cursor: pointer;
+        margin-right: 10px
+    }
+
+    /* Create a custom checkbox */
+    .mark {
+        position: absolute;
+        top: 8px;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        background-color: white;
+        border: 1px solid @green-color;
+        cursor: pointer;
+    }
 
     .field:hover input ~ .mark {
-        background-color: @link-color;
+        background-color: @green-color;
         opacity: 0.3;
     }
 
     input:checked ~ .mark {
-        background-color: @link-color!important;
+        background-color: @green-color!important;
         background-image: none;
     }
 
@@ -121,4 +125,25 @@
         position: relative;
     }
 
+}
+
+.login_form_container{
+    box-shadow: 0px 0px 20px #1B869426;
+    border-radius: 10px;
+    margin: 0 auto;
+    padding: 40px 50px!important;
+    button{
+        border: none;
+        padding: 15px 30px;
+    }
+    input{
+        background: #F6F6F6 0% 0% no-repeat padding-box;
+        border-radius: 5px;
+        border: none;
+        width: 80% !important;
+        margin: 0 auto;
+    }
+    a{
+        color: @green-color!important;
+    }
 }

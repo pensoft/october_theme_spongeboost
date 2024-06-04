@@ -1,6 +1,6 @@
-title = "Profile"
 url = "/profile"
 layout = "default"
+title = "Profile"
 is_hidden = 0
 robot_index = "index"
 robot_follow = "follow"
@@ -11,12 +11,26 @@ paramCode = "code"
 forceSecure = 0
 requirePassword = 0
 ==
+<?php
+use System\Models\File;
 
+function onStart(){
 
-<h1 class="underline">Profile</h1>
+}
+
+public function onRemoveAttachmentHandler(){
+    if (($fileId = post('file_id')) && ($file = File::find($fileId))) {
+        $file = File::find((int)post('file_id'));
+        $file->delete();
+return Redirect::to('/profile');
+}
+}
+?>
+==
 <div class="container">
     <div class="row">
-        <div class="col-md-10 col-xs-12 center-xs login_form_container">
+
+        <div class="col-xs-12 col-md-12 mt-1 mt-lg-0">
             {% if user %}
 
             {% partial 'components/account/activation_check' %}
@@ -24,11 +38,7 @@ requirePassword = 0
             {% partial 'components/account/update' %}
 
             {% endif %}
-            {% if  not user %}
 
-            <a class="btn btn-link" href="/register">Create account</a>
-
-            {% endif %}
         </div>
     </div>
 </div>

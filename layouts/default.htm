@@ -34,7 +34,7 @@ update_selector = "#gdpr-reload"
 <!--    <script src="{{ 'assets/js/tippy-bundle.umd.min.js'|theme}}"></script>-->
     <script src="{{ 'assets/js/app.js'|theme }}"></script>
     <script src="{{ 'assets/js/jquery-ui.js'|theme }}"></script>
-<!--    <script src="{{ 'assets/vendor/bootstrap/js/modal.js'|theme  }}"></script>-->
+    <script src="{{ 'assets/vendor/bootstrap/js/modal.js'|theme  }}"></script>
     <script type="text/javascript" src="{{ 'assets/js/slick.min.js'|theme }}"></script>
     <link rel="stylesheet" href="{{ 'assets/css/aos.css'|theme }}">
     <script src="{{ 'assets/js/aos.js'|theme }}"></script>
@@ -92,7 +92,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </header>
 
     <!-- Content -->
-    <section id="layout-content" class="{{this.page.id}}" {% if user and this.page.id != 'home' %} style="padding-top: 154px!important;" {% endif %}>
+    <section id="layout-content" class="{{this.page.id}}">
         {% page %}
     </section>
 </div>

@@ -269,36 +269,6 @@ $(document).ready(function() {
         });
     });
 
-    /* News highlights carousel **/
-    // $('.events-carousel').slick({
-    //     autoplay: false,
-    //     // autoplaySpeed: 2000,
-    //     draggable: true,
-    //     // pauseOnHover: true,
-    //     centerMode: true,
-    //     variableWidth: true,
-    //     infinite: true,
-    //     slidesToShow: 1,
-    //     speed: 1000,
-    //     centerPadding: '4%',
-    //     slidesToScroll: 1,
-    //     // centerPadding: '40px',
-    //     arrows: true,
-    //     dots: false,
-    //     responsive: [
-    //         {
-    //             breakpoint: 768,
-    //             settings: {
-    //                 arrows: false,
-    //                 dots: true,
-    //                 centerMode: true,
-    //                 centerPadding: '2%',
-    //                 slidesToShow: 1
-    //             }
-    //         }
-    //     ]
-    // });
-
     $('.events_tabs').each(function(){
         // For each set of tabs, we want to keep track of
         // which tab is active and its associated content
@@ -395,6 +365,21 @@ $(document).ready(function() {
         $(this).prev(".su_button_circle").removeClass("explode-circle");
         $(this).prev(".su_button_circle").addClass("desplode-circle");
     });
+
+
+
+
+    $('<div class="col-xs-12 col-sm-3 card internal no-border" style="margin-bottom: 15px">\n' +
+        '<a class="folder-background" style="display:flex; background: url(https://spongeboost.eu/storage/app/media/pensoft/report-forms.svg) center center no-repeat; background-size: 100px; height: 200px" href="/internal-repository/dissemination-report-forms" title="Dissemination report forms"></a>\n' +
+        '<h3 class="card-header"><a href="/internal-repository/dissemination-report-forms" title="Reporting forms">Reporting forms</a></h3>\n' +
+        '</div>').insertAfter($('.card.internal').last());
+
+    $('<div class="col-xs-12 col-sm-3 card internal no-border" style="margin-bottom: 15px">\n' +
+        '<a class="folder-background" style="display:flex; background: url(https://spongeboost.eu/storage/app/media/pensoft/living-documents.svg) center center no-repeat; background-size: 100px; height: 200px" href="/internal-repository/living-documents" title="Living documents"></a>\n' +
+        '<h3 class="card-header"><a href="/internal-repository/living-documents" title="Living documents">Living documents</a></h3>\n' +
+        '</div>').insertAfter($('.card.internal').last());
+
+    $('<small>To download individual image please right click</small>').insertAfter($('.all_images_container'));
 
 });
 
