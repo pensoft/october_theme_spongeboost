@@ -71,7 +71,7 @@ $(document).ready(function() {
     }
 
 
-    $('body').on('click', '.work_packages .accordion-toggle, .pilots .accordion-toggle', function () {
+    $('body').on('click', '.work_packages .accordion-toggle, .pilots .accordion-toggle, .messages .accordion-toggle', function () {
         if ($(this).next(".accordion-content").is(':visible')) {
             $(this).next(".accordion-content").slideUp(300);
             $(this).children().find(".plusminus").text('+');
@@ -97,9 +97,9 @@ $(document).ready(function() {
         var toggler = $(this).find(".accordion-toggle");
 
         if (toggler.next(".accordion-content").is(':visible')) {
-            $("path[title='"+title+"']").removeClass('active_path');
+            $("g[title='"+title+"']").removeClass('active_path');
         } else {
-            $("path[title='"+title+"']").addClass('active_path');
+            $("g[title='"+title+"']").addClass('active_path');
         }
     });
 
@@ -143,7 +143,7 @@ $(document).ready(function() {
                 }, 500);
             }else{
                 // event.preventDefault();
-                $("path[title='"+anchorId.toUpperCase()+"']").addClass('active_path');
+                $("g[title='"+anchorId.toUpperCase()+"']").addClass('active_path');
 
                 $('.accordion-border').each(function(){
                     var title = $(this).find(".accordion-toggle .col-xs.start-xs").text().toUpperCase();
@@ -370,16 +370,24 @@ $(document).ready(function() {
 
 
     $('<div class="col-xs-12 col-sm-3 card internal no-border" style="margin-bottom: 15px">\n' +
-        '<a class="folder-background" style="display:flex; background: url(https://spongeboost.eu/storage/app/media/pensoft/report-forms.svg) center center no-repeat; background-size: 100px; height: 200px" href="/internal-repository/dissemination-report-forms" title="Dissemination report forms"></a>\n' +
+        '<a class="folder-background" style="display:flex; background: url(https://spongeboost.eu/storage/app/media/reporting-forms.svg) center center no-repeat; background-size: 100px; height: 200px" href="/internal-repository/dissemination-report-forms" title="Dissemination report forms"></a>\n' +
         '<h3 class="card-header"><a href="/internal-repository/dissemination-report-forms" title="Reporting forms">Reporting forms</a></h3>\n' +
         '</div>').insertAfter($('.card.internal').last());
 
     $('<div class="col-xs-12 col-sm-3 card internal no-border" style="margin-bottom: 15px">\n' +
-        '<a class="folder-background" style="display:flex; background: url(https://spongeboost.eu/storage/app/media/pensoft/living-documents.svg) center center no-repeat; background-size: 100px; height: 200px" href="/internal-repository/living-documents" title="Living documents"></a>\n' +
+        '<a class="folder-background" style="display:flex; background: url(https://spongeboost.eu/storage/app/media/living-documents.svg) center center no-repeat; background-size: 100px; height: 200px" href="/internal-repository/living-documents" title="Living documents"></a>\n' +
         '<h3 class="card-header"><a href="/internal-repository/living-documents" title="Living documents">Living documents</a></h3>\n' +
         '</div>').insertAfter($('.card.internal').last());
 
     $('<small>To download individual image please right click</small>').insertAfter($('.all_images_container'));
+
+    $('<div class="mark"></div>').insertAfter($('.group-holder input'));
+
+
+    var QueryString = (new URL(location.href)).searchParams.get('type');
+    if(QueryString == 1 || QueryString == 3){
+        $('#partialLibraries').html('<p class="mt-2" align="center">Currently there is no content available. Keep posted for updates very soon.</p>');
+    }
 
 });
 
@@ -450,13 +458,13 @@ function expandReadMore(el){
 }
 
 function onHashChange(){
-	$("path").removeClass('active_path');
+	$("g").removeClass('active_path');
 	$(".accordion-content").hide();
 	var caseStudiesHashTitle = location.hash;
 
 	if(caseStudiesHashTitle){
 		var caseStudiesTitle = caseStudiesHashTitle.substring(1, caseStudiesHashTitle.length);
-		$("path[title='"+caseStudiesTitle.toUpperCase()+"']").addClass('active_path');
+		$("g[title='"+caseStudiesTitle.toUpperCase()+"']").addClass('active_path');
 
 
 	}
@@ -668,11 +676,14 @@ function handlePilotsSVGMapMouseMove(event) {
         default:
             return tooltip.classList.remove("active");
     }
-    var x = event.clientX;
-    var y = event.clientY;
+    // var x = event.clientX;
+    // var y = event.clientY;
 
-    tooltip.style.left = (x + 20) + "px";
-    tooltip.style.top = (y + 250) + "px";
+    var x = $(event.target).offset().left;
+    var y = $(event.target).offset().top;
+
+    tooltip.style.left = (x + 30) + "px";
+    tooltip.style.top = (y - 30) + "px";
 
     tooltip.innerHTML = title;
     tooltip.classList.add("active");
@@ -682,8 +693,8 @@ function handlePilotsSVGMapMouseMove(event) {
 function onPilots(pTitle) {
     var tooltip = document.getElementById("tooltip");
     // tooltip.classList.remove("active");
-    if(!$("path[title='"+pTitle+"']").hasClass('active_path')){
-        $("path[title='"+pTitle+"']").addClass('active_path');
+    if(!$("g[title='"+pTitle+"']").hasClass('active_path')){
+        $("g[title='"+pTitle+"']").addClass('active_path');
 
         $('.accordion-border').each(function(){
             var title = $(this).find(".accordion-toggle .col-xs.start-xs").text();
@@ -696,7 +707,7 @@ function onPilots(pTitle) {
             }
         });
     }else{
-        $("path[title='"+pTitle+"']").removeClass('active_path');
+        $("g[title='"+pTitle+"']").removeClass('active_path');
         $('.accordion-border').each(function(){
             var title = $(this).find(".accordion-toggle .col-xs.start-xs").text();
             var toggler = $(this).find(".accordion-toggle");
@@ -731,6 +742,69 @@ function animateNumbers() {
 			});
 		});
 	}
+}
+
+function fetchMails(i, searchStr){
+    // $('.group_mailing_list').hide();
+    if($('.group_mailing_list_'+i).is(":visible")){
+        $('.group_mailing_list_'+i).hide();
+    }else{
+        //groups
+        $.request('onFetchMailingList', {
+            update: { 'mailing_list': '#mailing_list_tooltip_content_'+i,
+            },
+            data: {
+                search_str: searchStr
+            },
+        }).then(response => {
+            $('.group_mailing_list_'+i).html('<a class="close-btn" onclick="hideMe(this)">X</a>' + response.mailing_list);
+        });
+        $('.group_mailing_list').hide();
+        $('.group_mailing_list_'+i).show();
+    }
+
+}
+
+
+function fetchSingleMail(i, searchStr){
+    if($('.single_mailing_list_'+i).is(":visible")){
+        $('.single_mailing_list_'+i).hide();
+    }else{
+        //groups
+        $.request('onFetchSingleMail', {
+            update: { 'individual_email': '#individual_tooltip_content_'+i,
+            },
+            data: {
+                search_str: searchStr
+            },
+        }).then(response => {
+            $('.single_mailing_list_'+i).html('<a class="close-btn" onclick="hideMe(this)">X</a>' + response.individual_email);
+        });
+        $('.single_mailing_list').hide();
+        $('.single_mailing_list_'+i).show();
+    }
+}
+
+function initMailingTooltip(){
+    var searchStr = '';
+    $('.group-holder').eq(0).find('.inputWithTooltip span').each(function(i, obj) {
+        searchStr = $.trim($(obj).text());
+        $(this).parent().css('display', 'inline-grid');
+        $('<img src="/storage/app/media/CMS_icons_groups.svg" style="max-width: 16px; margin-left: 5px;" class="icon mailing_list_tooltip_'+i+'" onclick="fetchMails('+i+', \'' + searchStr + '\')" />').insertAfter($(this).parent());
+        $('<div class="group_mailing_list group_mailing_list_' + i + '" style="display: none;"></div>').insertAfter($(this).parent());
+
+
+    });
+    $('.group-holder').eq(1).find('.inputWithTooltip span').each(function(i, obj) {
+        searchStr = $.trim($(obj).text());
+        $('<img src="/storage/app/media/CMS_icons_individuals.svg" style="max-width: 16px; margin-left: 5px;" class="icon mailing_list_tooltip_individuals_'+i+'" onclick="fetchSingleMail('+i+', \'' + searchStr + '\')" />').insertAfter($(this).parent());
+        $(this).parent().css('display', 'inline-grid');
+        $('<div class="single_mailing_list single_mailing_list_' + i + '" style="display: none;"></div>').insertAfter($(this).parent());
+    });
+
+    $('.group-holder').eq(0).prepend( "<p style='margin-left: 10px; width: 100%;'>Prior to sending group emails, please make sure that all individuals you want to contact have been included in the respective group by clicking on the group icon.</p><p></p>" );
+    $('.group-holder').eq(1).prepend( "<p style='margin-left: 10px; width: 100%;'>To see each person’s email, click on the account icon.</p><p></p>" );
+
 }
 
 init()

@@ -345,9 +345,10 @@ a.modal-link{
 }
 
 .userBox{
-  background: @secondary-color;
+  background: #FFFFFF;
+    box-shadow: 0px 0px 20px #1B869426;
     padding: 25px;
-    border-radius: 12px;
+    border-radius: 10px;
 }
 
 .username{
@@ -453,7 +454,7 @@ a:hover .arrow-left{
     a{
         display: flex;
         border-radius: 10px;
-        background-size: 80px!important;
+        background-size: 60px!important;
         transition: all ease-in-out 0.3s;
         position: relative;
         &:hover{
@@ -474,12 +475,21 @@ a:hover .arrow-left{
         width: 171px;
         height: 148px;
         z-index: 1;
+        .breakpoint-large-down({
+            left: 84px;
+        });
     }
 
     .breakpoint-large-down({
         flex-basis: 100%;
         width: 100%;
     });
+
+    &:nth-of-type(2){
+        .folder-background{
+            background-size: 80px!important;
+        }
+    }
 }
 
 .card.internal .card-header {
@@ -522,7 +532,7 @@ a:hover .arrow-left{
         content: ' ';
         position: absolute;
         background: url("../../assets/images/baloons_logos.svg") center no-repeat;
-        background-size: 100%;
+        background-size: cover;
         width: 100%;
         height: 100%;
         z-index: 2;

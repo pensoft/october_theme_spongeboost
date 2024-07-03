@@ -37,5 +37,15 @@ g#location-icon-7
 }
 
 .tooltiptext.active {
-  display: initial;
+    display: initial;
+}
+
+.active_path{
+    animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
 }

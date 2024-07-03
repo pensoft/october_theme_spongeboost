@@ -1105,3 +1105,111 @@ footer .align-items-center{
     }
   }
 }
+
+.container:has(.subscribe_newsletter_item){
+    background: transparent linear-gradient(240deg, #9BC622 0%, #01BDD6 100%) 0% 0% no-repeat padding-box;
+    border-radius: 10px;
+    padding: 0;
+    margin-bottom: 80px;
+    width: 972px;
+    height: 270px;
+    max-width: 100%;
+    .subscribe_newsletter_item{
+        background: url("../../../../storage/app/media/newsletter-circles.svg") center no-repeat;
+        background-size: cover;
+        width: 972px;
+        height: 270px;
+        max-width: 100%;
+        padding: 0;
+        color: white;
+         
+        .card_title{
+            color: white;
+            font-size: 2.1em;
+            line-height: 1.3em;
+            font-weight: bold;
+        }
+
+        .button_su_inner{
+            background: white;
+            color: @green-color;
+            padding: 11px 50px;
+            &:hover{
+                color: @white-color;
+            }
+        }
+    }
+}
+
+.category-tabs-container{
+  margin: 40px auto;
+    padding: 10px;
+    width: fit-content;
+    border: 2px solid #E1E1E1;
+    border-radius: 49px;
+    display: flex;
+    align-items: center;
+
+    .breakpoint-large-down({
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        align-self: center;
+        justify-content: center;
+        margin: 54px auto;
+        width: 90%;
+    });
+
+    .btn-primary{
+        .breakpoint-small-down({
+            margin-bottom: 20px;
+        });
+    }
+
+    a {
+        margin-right: 20px;
+        width: fit-content;
+        cursor: pointer;
+        color: #858585;
+        border: none;
+        background: none;
+        font-size: 18px;
+        padding: 10px 20px;
+        .breakpoint-small-down({
+            display: block;
+            margin-left: 0px;
+            width: 100%;
+            padding: 5px 0;
+            text-align: center;
+            &.active{
+                width:fit-content;
+                color: white;
+                background: @green-color;
+                border-radius: 30px;
+                padding: 10px 20px;
+                margin: 0 auto;
+            }
+        });
+
+        &.active{
+            color: white;
+            background: @green-color;
+            border-radius: 30px;
+
+        }
+    }
+  .category-tabs{
+      .breakpoint-large-down({
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      });            
+  }
+  .breakpoint-large-down({
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+  });     
+}
+
