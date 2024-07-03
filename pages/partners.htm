@@ -24,18 +24,21 @@ function onStart(){
             <div class="col-xs-12 col-md-8 start-md center-xs partner_title">
                 <div class="instituion-title">{{partner.instituion}}</div>
             </div>
-            <div class="col-xs-12 col-md-2 end-md start-xs partner_link">
-            <div class="button_su">
+            <div class="col-xs-12 col-md-2 end-md center-xs">
+                <span class="country_{{partner.country_code[0]}}"></span>
+            </div>
+            <div class="col-xs-12 partner_description">{{partner.content|raw}}</div>
+            <div class="col-xs-12 partner_link">
+                <div class="button_su">
                 <span class="su_button_circle">
                 </span>
-                <a href="{{partner.instituion_url}}" class="button_su_inner">
+                    <a href="{{partner.instituion_url}}" class="button_su_inner">
                     <span class="button_text_container">
                     Visit website
                     </span>
-                </a>
+                    </a>
+                </div>
             </div>
-            </div>
-            <div class="col-xs-12 partner_description">{{partner.content|raw}}</div>
         </div>
     </div>
     {% endfor %}
