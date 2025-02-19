@@ -4,7 +4,6 @@ title = "Partners"
 is_hidden = 0
 robot_index = "index"
 robot_follow = "follow"
-
 ==
 <?php
 use Pensoft\Partners\Models\Partners;
@@ -19,7 +18,7 @@ function onStart(){
 <div class="container">
     {% for partner in partners %}
     <div class="col-xs-12 partner-item">
-        <div class="row">
+        <div class="row middle-xs">
             <div class="col-xs-12 col-md-2 start-md center-xs partner_cover"><img src="{{partner.cover.path}}"></div>
             <div class="col-xs-12 col-md-8 start-md center-xs partner_title">
                 <div class="instituion-title">{{partner.instituion}}</div>
