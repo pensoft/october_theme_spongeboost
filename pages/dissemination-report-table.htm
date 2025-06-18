@@ -1,0 +1,47 @@
+url = "/internal-repository/reporting-table"
+layout = "default"
+title = "Reporting table"
+
+[session]
+security = "user"
+allowedUserGroups[] = "internal-users"
+allowedUserGroups[] = "registered"
+allowedUserGroups[] = "guest"
+redirect = "home"
+==
+{% component 'session' %}
+<div class="container">
+
+	<div class="row middle-xs between-xs">
+		<div class="col-xs-12 col-md-5 mt-1 mb-1">
+
+		</div>
+
+		<div class="col-xs-12 col-md-3 end-xs">
+			<a href="{{url('internal-repository')}}" class="back"> <div class="arrow-left end-xs"></div> &nbsp;Back to documents</a>
+		</div>
+
+		<div class="col-xs-12 col-md-12 end-xs">
+			<h1 class="base_heading inner-page">Reporting Master Table </h1>
+		</div>
+
+
+		<div class="col-xs-12 work_packages">
+
+			<div class="accordion-border">
+				<div class="row middle-xs accordion-toggle">
+
+					<div class="col-xs start-xs">
+						<a href="https://docs.google.com/spreadsheets/d/1F13Dtg56iJiqVOzjHp3Jdv-l1P3r3QOz_qUOqHGXxZc/edit?usp=sharing" target="_blank">SpongeBoost Reporting Table</a></div>
+			
+				</div>
+			</div>
+
+
+
+		</div>
+
+
+	</div>
+
+</div>
