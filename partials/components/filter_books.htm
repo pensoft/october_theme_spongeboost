@@ -1,0 +1,33 @@
+<div class="row">
+    {% for record in records %}
+
+        <div class="col-md-4 col-xs-12 mb-4">
+            <div class="flyer-container {{record.title}}">
+                <img src="{{record.cover.path}}" title="{{record.title}}">
+            </div>
+            <p align="center">{{record.title}}</p>
+
+            <div class="links">
+                {% if record.file %}
+                <div class="button_su">
+                    {{form_open({ request: 'onDownloadFile' }) }}
+                    <input type="hidden" value="{{record.file.id}}" name="id">
+                    <span class="su_button_circle desplode-circle"></span>
+                    <button type="submit" data-attach-loading class="btn button_su_inner"><span class="button_text_container"><i class="pr normal p-download"></i>Download</span></button>
+                    {{ form_close() }}
+                </div>
+                {% endif %}
+                {% if record.url %}
+                <div class="button_su">
+                    <span class="su_button_circle desplode-circle"></span>
+                    <a class="btn button_su_inner" href="{{record.url}}" target="_blank"><span class="button_text_container">ZENODO URL</span></a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+
+
+
+    {% endfor %}
+</div>

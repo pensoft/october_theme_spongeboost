@@ -12,6 +12,7 @@ use Pensoft\Media\Models\Newsletters;
 use Pensoft\Media\Models\Presentations;
 use Pensoft\Media\Models\Pressreleases;
 use Pensoft\Media\Models\Videos;
+use Pensoft\Media\Models\Books;
 
 function onStart(){
 	$this['logos'] =  MediaLogos::get();
@@ -20,6 +21,7 @@ function onStart(){
 	$this['presentations'] =  Presentations::get();
 	$this['pressreleases'] =  Pressreleases::get();
 	$this['videos'] =  Videos::get();
+	$this['books'] =  Books::get();
 }
 ?>
 ==
@@ -77,6 +79,17 @@ function onStart(){
                 <a href="{{url('media-center')}}/videos" title="Videos">
                     <div class="card_image_container" title="Videos"><div class="card_bg"><span class="card_icon" style="background: url({{'media-center/videos.svg'|media}}) center center no-repeat;"></span></div></div>
                     <br><span class="media_label">Videos</span>
+                </a>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if books.count() %}
+        <div class="col-sm-2 col-xs-12 media_item">
+            <div class="card-container text-center">
+                <a href="{{url('media-center')}}/comic_books" title="Comic books">
+                    <div class="card_image_container" title="Comic books"><div class="card_bg"><span class="card_icon" style="background: url({{'media-center/videos.svg'|media}}) center center no-repeat;"></span></div></div>
+                    <br><span class="media_label">Comic books</span>
                 </a>
             </div>
         </div>

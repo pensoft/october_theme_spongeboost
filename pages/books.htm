@@ -1,0 +1,47 @@
+url = "/media-center/comic_books"
+layout = "default"
+title = "Comic books"
+is_hidden = 0
+robot_index = "index"
+robot_follow = "follow"
+
+[filter_books]
+==
+<?php
+use Pensoft\Media\Models\Books;
+use System\Models\File;
+
+function onStart(){
+	$this['mediaBooksList'] =  Books::get();
+if(get('download')){
+$file = File::find((int)get('download'));
+$file_name = $file->getLocalPath();
+$recordName = get('file_name') ? get('file_name') : 'TUDI_video';
+$ext= $file->getExtension();
+
+if (file_exists($file_name)) {
+header('Content-Description: File Transfer');
+header('Content-Type: application/octet-stream');
+header("Content-Type: application/force-download");
+header('Content-Disposition: attachment; filename='.$recordName .'.'. $ext);
+header('Content-Transfer-Encoding: binary');
+header('Expires: 0');
+header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+header('Pragma: public');
+header('Content-Length: ' . filesize($file_name));
+ob_clean();
+flush();
+readfile($file_name);
+exit();
+}
+return Redirect::to('/media-center/books');
+}
+}
+?>
+==
+<div class="container">
+    <div class="col-xs-12 go-back">
+        <a href="{{'media-center'|page}}" class="col-xs-12 back-to-news">< Back to Media center</a>
+    </div>
+    {% component 'filter_books' %}
+</div>
