@@ -709,6 +709,25 @@ ul.pagination{
     color: white;
     z-index: 2;
 
+
+    .button_su{
+        position: absolute;
+        bottom: -41px;
+        right: 20px;
+
+        .breakpoint-large-down({
+            position: unset;
+            bottom: unset;
+            right: unset;
+            margin-bottom: 0;
+            margin-top: 30px;
+            margin-right: auto;
+            margin-left: auto;
+        });
+    }
+
+
+
     .container-fluid {
         &.dark-background {
             background: #1E1E19;
@@ -786,6 +805,10 @@ ul.pagination{
     .social-networks{
         display: flex;
         color: #01BDD6;
+        position: relative;
+        align-items: center;
+        justify-content: space-between;
+
         .breakpoint-large-down ({
             margin-top: 20px;
             justify-content: center;
@@ -1122,7 +1145,7 @@ footer .align-items-center{
         max-width: 100%;
         padding: 0;
         color: white;
-         
+
         .card_title{
             color: white;
             font-size: 2.1em;
@@ -1203,13 +1226,13 @@ footer .align-items-center{
           display: flex;
           align-items: center;
           justify-content: center;
-      });            
+      });
   }
   .breakpoint-large-down({
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-  });     
+  });
 }
 
