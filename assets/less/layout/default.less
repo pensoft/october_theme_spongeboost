@@ -62,6 +62,37 @@
     });
 }
 
+
+.container1000 {
+    max-width: 100%;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    //padding-top: @padding-base-space-home * 2.5;
+    padding-top: 50px;
+    //padding-bottom: @padding-base-space-home * 2.5;
+    padding-bottom: 80px;
+    margin-right: auto;
+    margin-left: auto;
+
+    &:has(.tabs){
+        padding-bottom: 0;
+        padding-top: 0;
+    }
+
+    .breakpoint-small({
+        max-width: 540px;
+    });
+    .breakpoint-medium({
+        max-width: 720px;
+    });
+    .breakpoint-large({
+        max-width: 920px;
+    });
+    .breakpoint-huge({
+        max-width: 1000px;
+    });
+}
+
 .container-fluid {
     width: 100%;
     padding-left: 0!important;
