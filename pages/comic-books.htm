@@ -1,7 +1,25 @@
-title = "Comic books"
-layout = "default"
 url = "/comic-books"
+layout = "default"
+title = "Comic books"
 
 [siteSearchInclude]
+
+[jumbotron]
+jumbotron = "comic-book-1"
+background = "transperant"
+templates = "template3"
+description_limit = 0
+
+[jumbotron jumbotron2]
+jumbotron = "comic-book-2"
+background = "transperant"
+templates = "template3"
+description_limit = 0
 ==
 {% component 'siteSearchInclude' %}
+
+{% component 'jumbotron' %}
+
+<div class="container-fluid first_edition">
+    {% component 'jumbotron2' %}
+</div>
