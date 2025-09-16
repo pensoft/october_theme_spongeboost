@@ -1,0 +1,57 @@
+url = "/spongebooster-year"
+layout = "default"
+title = "SpongeBooster of the year"
+
+[siteSearchInclude]
+
+[jumbotron]
+jumbotron = "spongebooster-year-about-tab"
+background = "transperant"
+templates = "template3"
+description_limit = 0
+
+[jumbotron jumbotron2]
+jumbotron = "apply-now"
+background = "transperant"
+templates = "template3"
+description_limit = 0
+
+[jumbotron jumbotron3]
+jumbotron = "winner"
+background = "transperant"
+templates = "template3"
+description_limit = 0
+==
+{% component 'siteSearchInclude' %}
+
+<div class="container800">
+    <div class="tabs">
+        <a class="" href="#About">About</a>
+        <a class="" href="#ApplyNow">Apply now</a>
+        <a class="" href="#PreviousWinners">Previous winners</a>
+    </div>
+</div>
+
+<!--tabs content	-->
+<div class="container-fluid about_tab" id="About">
+
+        {% component 'jumbotron' %}
+
+    <div class="citation">
+        <div class="container800">
+            <div class="citation_text">The example projects should help to better research sponge solutions and develop recommendations for other locations. The aim is to promote the restoration
+            of sponge landscapes throughout the European Union.</div>
+            <div class="citation_author">
+                <img src="{{'mathias.png'|media}}" title="Mathias Scholz - UFZ, project coordinator of the EU SpongeBoost project" alt="Mathias Scholz">
+                <p>Mathias Scholz - UFZ, project coordinator of the EU SpongeBoost project</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid apply_now_tab"  id="ApplyNow">
+    {% component 'jumbotron2' %}
+</div>
+<div class="container-fluid previous_winners_tab"  id="PreviousWinners">
+    
+{% component 'jumbotron3' %}
+</div>

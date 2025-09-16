@@ -269,7 +269,7 @@ $(document).ready(function() {
         });
     });
 
-    $('.events_tabs').each(function(){
+    $('.events_tabs, .spongebooster-year .tabs').each(function(){
         // For each set of tabs, we want to keep track of
         // which tab is active and its associated content
         var $active, $content, $links = $(this).find('a');
@@ -284,6 +284,10 @@ $(document).ready(function() {
         }
 
         if($(this).parent().parent().hasClass('events')){
+            $active.addClass('active');
+        }
+
+        if($(this).parent().parent().hasClass('spongebooster-year')){
             $active.addClass('active');
         }
 

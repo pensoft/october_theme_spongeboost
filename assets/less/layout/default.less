@@ -29,6 +29,38 @@
     }
 }
 
+.container:has(.container800){
+    padding: 0;
+}
+.container800 {
+    max-width: 100%;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    //padding-top: @padding-base-space-home * 2.5;
+    padding-top: 50px;
+    //padding-bottom: @padding-base-space-home * 2.5;
+    padding-bottom: 80px;
+    margin-right: auto;
+    margin-left: auto;
+
+    &:has(.tabs){
+        padding-bottom: 0;
+    }
+
+    .breakpoint-small({
+        max-width: 540px;
+    });
+    .breakpoint-medium({
+        max-width: 700px;
+    });
+    .breakpoint-large({
+        max-width: 700px;
+    });
+    .breakpoint-huge({
+        max-width: 830px;
+    });
+}
+
 .container-fluid {
     width: 100%;
     padding-left: 0!important;
