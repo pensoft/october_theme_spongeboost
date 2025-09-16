@@ -384,10 +384,10 @@ $(document).ready(function() {
     $('<div class="mark"></div>').insertAfter($('.group-holder input'));
 
 
-    var QueryString = (new URL(location.href)).searchParams.get('type');
-    if(QueryString == 1 || QueryString == 3){
-        $('#partialLibraries').html('<p class="mt-2" align="center">Currently there is no content available. Keep posted for updates very soon.</p>');
-    }
+    // var QueryString = (new URL(location.href)).searchParams.get('type');
+    // if(QueryString == 1 || QueryString == 3){
+    //     $('#partialLibraries').html('<p class="mt-2" align="center">Currently there is no content available. Keep posted for updates very soon.</p>');
+    // }
 
 });
 
