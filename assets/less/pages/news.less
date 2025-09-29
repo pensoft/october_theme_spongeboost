@@ -256,6 +256,31 @@ nav:not(.navbar){
         }
         .news-item {
             .news_column{
+                height: 100%;
+                .news-date-container{
+                    background: transparent linear-gradient(256deg, #9BC622 0%, #01BDD6 100%) 0% 0% no-repeat;
+                    width: fit-content;
+                    border-radius: 10px;
+                    color: @white-color;
+                    padding: 2px 24px;
+                    margin-bottom: 24px;
+                    .news-date{
+                        margin-left: 18px;
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        &:before{
+                            position: absolute;
+                            content: '';
+                            background: url("../../assets/images/calendar-white-1.svg") center center no-repeat;
+                            background-size: 16px;
+                            width: 16px;
+                            height: 16px;
+                            left: -24px;
+                        }
+                    }
+                }
+
                 .news-card{
                     display: flex;
                     flex-direction: column;
@@ -289,6 +314,7 @@ nav:not(.navbar){
                         line-height: 1.3em;
                         text-align: left;
                         padding: 0 30px;
+                        height: -webkit-fill-available;
 
                         h3{
                             line-height: 1.3em;

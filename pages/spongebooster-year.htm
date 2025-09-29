@@ -21,14 +21,22 @@ jumbotron = "spongebooster-year-previous-winners-tab"
 background = "transperant"
 templates = "template3"
 description_limit = 0
+
+[jumbotron jumbotron4]
+jumbotron = "sponge-online-navigation-guide-european-sponge-projects"
+title = 1
+background = "transperant"
+templates = "template3"
+description_limit = 0
 ==
 {% component 'siteSearchInclude' %}
 
 <div class="container800">
     <div class="tabs">
         <a class="" href="#About">About</a>
-        <a class="" href="#ApplyNow">Apply now</a>
+<!--        <a class="" href="#ApplyNow">Apply now</a>-->
         <a class="" href="#PreviousWinners">Previous winners</a>
+        <a class="" href="#SPONGE">S.P.O.N.G.E.</a>
     </div>
 </div>
 
@@ -48,10 +56,20 @@ description_limit = 0
         </div>
     </div>
 </div>
-<div class="container-fluid apply_now_tab"  id="ApplyNow">
-    {% component 'jumbotron2' %}
-</div>
+<!--<div class="container-fluid apply_now_tab"  id="ApplyNow">-->
+<!--    {% component 'jumbotron2' %}-->
+<!--</div>-->
 <div class="container-fluid previous_winners_tab"  id="PreviousWinners">
-    
+
 {% component 'jumbotron3' %}
+</div>
+<div class="container-fluid sponge"  id="SPONGE">
+    <div class="container ">
+        <div class="row">
+            <div class="col-md-4 col-xs-12">
+                <img src="{{'sponge_map.png'|media}}" title="S.P.O.N.G.E – the online navigation guide for European sponge projects" alt="S.P.O.N.G.E">
+            </div>
+            <div class="col-md-8 col-xs-12">{% component 'jumbotron4' %}</div>
+        </div>
+    </div>
 </div>
