@@ -31,38 +31,40 @@ description_limit = 0
 ==
 {% component 'siteSearchInclude' %}
 
-<div class="container800">
-    <div class="tabs">
-        <a class="" href="#About">About</a>
-        <a class="" href="#ApplyNow">Apply now</a>
-        <a class="" href="#PreviousWinners">Previous winners</a>
-<!--        <a class="" href="#SPONGE">S.P.O.N.G.E</a>-->
+<main id="main-content" role="main">
+    <div class="container800">
+        <nav class="tabs" role="tablist" aria-label="Award information sections">
+            <a class="tab-link" href="#About" role="tab" aria-selected="true" aria-controls="About" id="tab-about">About</a>
+            <a class="tab-link" href="#ApplyNow" role="tab" aria-selected="false" aria-controls="ApplyNow" id="tab-apply">Apply now</a>
+            <a class="tab-link" href="#PreviousWinners" role="tab" aria-selected="false" aria-controls="PreviousWinners" id="tab-winners">Previous winners</a>
+        </nav>
     </div>
-</div>
 
-<!--tabs content	-->
-<div class="container-fluid about_tab" id="About">
+    <!--tabs content   -->
+    <div class="container-fluid about_tab" id="About" role="tabpanel" aria-labelledby="tab-about">
 
         {% component 'jumbotron' %}
 
-    <div class="citation">
-        <div class="container800">
-            <div class="citation_text">The example projects should help to better research sponge solutions and develop recommendations for other locations. The aim is to promote the restoration
-            of sponge landscapes throughout the European Union.</div>
-            <div class="citation_author">
-                <img src="{{'mathias.png'|media}}" title="Mathias Scholz - UFZ, project coordinator of the EU SpongeBoost project" alt="Mathias Scholz">
-                <p>Mathias Scholz - UFZ, project coordinator of the EU SpongeBoost project</p>
+        <figure class="citation">
+            <div class="container800">
+                <blockquote class="citation_text">
+                    <p>The example projects should help to better research sponge solutions and develop recommendations for other locations. The aim is to promote the restoration of sponge landscapes throughout the European Union.</p>
+                </blockquote>
+                <figcaption class="citation_author">
+                    <img src="{{'mathias.png'|media}}" alt="Mathias Scholz">
+                    <p><strong>Mathias Scholz</strong> - UFZ, project coordinator of the EU SpongeBoost project</p>
+                </figcaption>
             </div>
-        </div>
+        </figure>
     </div>
-</div>
-<div class="container-fluid apply_now_tab"  id="ApplyNow">
-    {% component 'jumbotron2' %}
-</div>
-<div class="container-fluid previous_winners_tab"  id="PreviousWinners">
+    <div class="container-fluid apply_now_tab" id="ApplyNow" role="tabpanel" aria-labelledby="tab-apply" hidden>
+        {% component 'jumbotron2' %}
+    </div>
+    <div class="container-fluid previous_winners_tab" id="PreviousWinners" role="tabpanel" aria-labelledby="tab-winners" hidden>
 
-{% component 'jumbotron3' %}
-</div>
+        {% component 'jumbotron3' %}
+    </div>
+</main>
 <!--<div class="container-fluid sponge"  id="SPONGE">-->
 <!--    <div class="container ">-->
 <!--        <div class="row">-->
