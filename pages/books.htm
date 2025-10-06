@@ -55,9 +55,9 @@ return Response::download($pathToFile, $fileName, $headers);
 
 ?>
 ==
-<div class="container">
-    <div class="col-xs-12 go-back">
+<section class="container">
+    <nav class="col-xs-12 go-back" aria-label="Breadcrumb">
         <a href="{{'media-center'|page}}" class="col-xs-12 back-to-news">< Back to Media center</a>
-    </div>
+    </nav>
     {% component 'filter_books' %}
-</div>
+</section>

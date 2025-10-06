@@ -19,32 +19,40 @@ function onStart(){
 ==
 {% component 'siteSearchInclude' %}
 {% component 'jumbotron' %}
-<div class="container">
-
+<section class="container" aria-labelledby="pilots-heading">
+    <h2 id="pilots-heading" class="sr-only">Pilot Sites</h2>
     <div class="row top-xs">
         <div class="col-md-6 col-xs-12 pilots">
             {% for key, item in records %}
-            <div class="accordion-border key_{{key}}"><!-- 1 --><!-- css 1 -->
-                <div class="row middle-xs accordion-toggle">
-                    <div class="col-xs-1 green_bullet {{item.title|slug}}">&nbsp;</div>
+            <article class="accordion-border key_{{key}}">
+                <h3 class="sr-only">{{item.title}}</h3>
+                <button class="row middle-xs accordion-toggle"
+                        aria-expanded="false"
+                        aria-controls="pilot-content-{{key}}"
+                        id="pilot-button-{{key}}">
+                    <span class="col-xs-1 green_bullet {{item.title|slug}}" aria-hidden="true">&nbsp;</span>
 
-                    <div class="col-xs start-xs">{{item.title}}</div>
+                    <span class="col-xs start-xs">{{item.title}}</span>
 
-                    <div class="col-xs-2 end-xs plusminus"><span class="plus"></span></div>
-                </div>
+                    <span class="col-xs-2 end-xs plusminus" aria-hidden="true"><span class="plus"></span></span>
+                </button>
 
-                <div class="accordion-content" style="display: none;">
+                <div class="accordion-content"
+                     id="pilot-content-{{key}}"
+                     role="region"
+                     aria-labelledby="pilot-button-{{key}}"
+                     style="display: none;">
                     {{item.body|raw}}
                 </div>
-            </div>
+            </article>
             {% endfor %}
         </div>
         <div class="col-md-6 col-xs-12">
 
-            <div class="pilots_svg_map_container">
-                <span class="tooltiptext" id="tooltip">Bulgaria</span>
+            <div class="pilots_svg_map_container" role="img" aria-label="Interactive map of pilot site locations">
+                <div class="tooltiptext" id="tooltip" role="tooltip" aria-live="polite">Bulgaria</div>
                 {% partial 'map' %}
             </div>
         </div>
     </div>
-</div>
+</section>

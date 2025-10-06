@@ -73,42 +73,60 @@ return Response::download($pathToFile, $fileName, $headers);
 
 {% set records = mediaVideosList %}
 
-<div class="container">
-    <div class="col-xs-12 go-back">
-        <a href="{{'media-center'|page}}" class="col-xs-12 back-to-news">< Back to Media center</a>
-    </div>
-    {% if records.count() %}
-    <div class="row">
-        {% for record in records %}
-        <div class="col-md-4 col-xs-12">
+<main id="main-content" role="main">
+    <div class="container">
+        <nav class="col-xs-12 go-back" aria-label="Breadcrumb">
+            <a href="{{'media-center'|page}}" class="col-xs-12 back-to-news">< Back to Media center</a>
+        </nav>
+        {% if records.count() %}
+        <div class="row">
+            {% for record in records %}
+            <article class="col-md-4 col-xs-12">
 
+                {% if record.youtube_url %}
+                <iframe allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                        src="{{record.youtube_url}}"
+                        width="100%"
+                        height="267"
+                        title="{{record.name}} on YouTube"
+                        loading="lazy"></iframe>
+                {% endif %}
 
+                {% if record.vimeo_url %}
+                <iframe width="100%"
+                        height="267"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                        src="{{record.vimeo_url}}"
+                        title="{{record.name}} on Vimeo"
+                        loading="lazy"></iframe>
 
-            {% if record.youtube_url %}
-            <iframe allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" src="{{record.youtube_url}}" width="100%" height="267"></iframe>
-            {% endif %}
-
-            {% if record.vimeo_url %}
-            <iframe width="100%" height="267" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    src="{{record.vimeo_url}}">
-            </iframe>
-
-            {% endif %}
-            <p class="card_title">{{ record.name|length > 65 ? record.name|striptags|slice(0, 65)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : record.name|striptags|replace({"&nbsp;": " ", ".": ". "})  }}</p>
-            {% if record.file %}
-            <div class="links">
-                <div class="button_su">
-                    <!--<video controls="" width="100%" height="267"><source src="{{record.file.path}}" type="video/mp4"></video>-->
-                    <span class="su_button_circle desplode-circle"></span>
-                    <a class="button_su_inner" href="{{ ''| page }}?{{queries}}&download={{record.file.id}}&file_name={{record.name|replace({' ': '_'})}}"><span class="button_text_container"><i class="pr normal p-download"></i>Download</span></a>
+                {% endif %}
+                <h2 class="card_title">{{ record.name|length > 65 ? record.name|striptags|slice(0, 65)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : record.name|striptags|replace({"&nbsp;": " ", ".": ". "})  }}</h2>
+                {% if record.file %}
+                <div class="links">
+                    <div class="button_su">
+                        <span class="su_button_circle desplode-circle" aria-hidden="true"></span>
+                        <a class="button_su_inner"
+                           href="{{ ''| page }}?{{queries}}&download={{record.file.id}}&file_name={{record.name|replace({' ': '_'})}}"
+                           aria-label="Download {{record.name}} video"
+                           download>
+                        <span class="button_text_container">
+                            <i class="pr normal p-download" aria-hidden="true"></i>Download
+                        </span>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            {% endif %}
-        </div>
+                {% endif %}
+            </article>
 
-        {% else %}
-        {{ noRecordsMessage }}
-        {% endfor %}
+            {% else %}
+            <div class="col-xs-12 text-center" role="status">
+                <p>{{ noRecordsMessage }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
     </div>
-    {% endif %}
-</div>
+</main>

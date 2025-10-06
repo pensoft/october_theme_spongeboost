@@ -39,42 +39,52 @@ function onStart(){
 
 {% if records.count %}
 
-<div class="container">
-    <div class="col-xs-12 go-back">
-        <a href="{{'media-center'|page}}" class="col-xs-12 back-to-news">< Back to Media center</a>
-    </div>
+<main id="main-content" role="main">
+    <div class="container">
+        <nav class="col-xs-12 go-back" aria-label="Breadcrumb">
+            <a href="{{'media-center'|page}}" class="col-xs-12 back-to-news">< Back to Media center</a>
+        </nav>
 
-    <div class="row press-relieses-container">
+        <div class="row press-relieses-container">
 
 
-        {% for record in records %}
-        {# Use spaceless tag to remove spaces inside the A tag. #}
-        {% spaceless %}
-        <div class="col-xs-12">
-            <div class="press-relies-item">
-                <div class="date"> {{record.date |date('d F Y')}}</div>
-                <span class="card_title">{{record.name}}</span><br><br>
+            {% for record in records %}
+            {# Use spaceless tag to remove spaces inside the A tag. #}
+            {% spaceless %}
+            <article class="col-xs-12">
+                <div class="press-relies-item">
+                    <time class="date" datetime="{{record.date|date('Y-m-d')}}">{{record.date |date('d F Y')}}</time>
+                    <h2 class="card_title">{{record.name}}</h2>
 
-                <div class="body">{{record.description | raw}}</div>
-                <div class="row link">
-                    {% for link in record.link %}
-                    <div class="button_su">
-                        <span class="su_button_circle desplode-circle"></span>
-                        <a class="button_su_inner" href="{{link.url}}" target="_blank"><span class="button_text_container">{{link.text}}</span></a>
-                    </div>
+                    <div class="body">{{record.description | raw}}</div>
+                    <nav class="row link" aria-label="{{record.name}} related links">
+                        {% for link in record.link %}
+                        <div class="button_su">
+                            <span class="su_button_circle desplode-circle" aria-hidden="true"></span>
+                            <a class="button_su_inner"
+                               href="{{link.url}}"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               aria-label="{{link.text}} (opens in new window)">
+                                <span class="button_text_container">{{link.text}}</span>
+                            </a>
+                        </div>
 
-                    {% endfor %}
+                        {% endfor %}
+                    </nav>
                 </div>
-            </div>
+            </article>
+
+
+            {% endspaceless %}
+            {% endfor %}
         </div>
-
-
-        {% endspaceless %}
-        {% endfor %}
     </div>
-</div>
+</main>
 {% else %}
-<div class="container-fluid bg-secondary coming_soon">
-    {% component 'jumbotron' %}
-</div>
+<main id="main-content" role="main">
+    <div class="container-fluid bg-secondary coming_soon">
+        {% component 'jumbotron' %}
+    </div>
+</main>
 {% endif %}

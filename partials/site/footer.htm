@@ -19,82 +19,101 @@ background = "transperant"
 templates = "template3"
 description_limit = 0
 ==
-<div class="container-fluid border-box dark-background">{% component 'cookieConsent' %}
-    <div class="container">
-        <div class="row top-xs between-xs footer-menu-container">
+<footer role="contentinfo">
+    <div class="container-fluid border-box dark-background">{% component 'cookieConsent' %}
+        <div class="container">
+            <div class="row top-xs between-xs footer-menu-container">
 
-            <div class="col-md-6 col-xs-12 footer-disclaimer-container footer-right-border">
-                {% if (footer_funds_flag != null or footer_funds_text != '') %}
-                <div class="funding flex-column my-1 my-lg-0 flex-lg-row px-1 align-items-center col-sm col-xs-12">
-                    {% if footer_funds_flag %}
-                    <img class="text mr-0 mr-lg-1" style="height:60px;" src="{{ footer_funds_flag }}"/>
-                    {% endif %}
-                </div>
-                <div class="funding-text">
-                    <p>SpongeBoost receives funding from the European Union's Horizon Europe research and innovation programme under grant agreement No.101112906.</p>
-                    <p>Views and opinions expressed are those of the author(s) only and do not necessarily reflect those of the European Union or the European Climate, Infrastructure and Environment Executive Agency (CINEA). Neither the EU nor CINEA can be held responsible for them.</p>
-                </div>
-                <div class="social-networks">
-                    <div class="icons">
-                        {% if enable_facebook and facebook_url %}
-                        <a href="{{facebook_url}}" target="_blank" class="pr p-secondary p-facebook normal" target="_blank"></a>
-                        {% endif %}
-                        {% if enable_twitter and twitter_url %}
-                        <a href="{{twitter_url}}" target="_blank" class="pr p-secondary p-twitter normal" target="_blank"></a>
-                        {% endif %}
-                        {% if enable_linkedin and linkedin_url %}
-                        <a  href="{{linkedin_url}}" target="_blank" class="pr p-secondary p-linkedin normal" target="_blank"></a>
-                        {% endif %}
-                        {% if enable_youtube and youtube_url %}
-                        <a  href="{{youtube_url}}" target="_blank" class="pr p-secondary p-youtube normal" target="_blank"></a>
-                        {% endif %}
-                        {% if enable_instagram and instagram_url %}
-                        <a  href="{{instagram_url}}" target="_blank" class="pr p-secondary p-instagram normal" target="_blank"></a>
-                        {% endif %}
-                        {% if this.theme.bluesky_url %}
-                        <a href="{{this.theme.bluesky_url}}" target="_blank" class="pr p-secondary p-bluesky small"></a>
-                        {% endif %}
-                        {% if this.theme.threads_url %}
-                        <a href="{{this.theme.threads_url}}" target="_blank" class="pr p-secondary p-threads small"></a>
-                        {% endif %}
-                    </div>
+                <div class="col-md-6 col-xs-12 footer-disclaimer-container footer-right-border">
+                    {% if (footer_funds_flag != null or footer_funds_text != '') %}
+                    <section role="region" aria-label="Funding information">
+                        <div class="funding flex-column my-1 my-lg-0 flex-lg-row px-1 align-items-center col-sm col-xs-12">
+                            {% if footer_funds_flag %}
+                            <img class="text mr-0 mr-lg-1" style="height:60px;" src="{{ footer_funds_flag }}" alt="European Union flag"/>
+                            {% endif %}
+                        </div>
+                        <div class="funding-text">
+                            <p>SpongeBoost receives funding from the European Union's Horizon Europe research and innovation programme under grant agreement No.101112906.</p>
+                            <p>Views and opinions expressed are those of the author(s) only and do not necessarily reflect those of the European Union or the European Climate, Infrastructure and Environment Executive Agency (CINEA). Neither the EU nor CINEA can be held responsible for them.</p>
+                        </div>
+                    </section>
+                    <nav class="social-networks" aria-label="Social media links">
+                        <div class="icons">
+                            {% if enable_facebook and facebook_url %}
+                            <a href="{{facebook_url}}" target="_blank" rel="noopener noreferrer" class="pr p-secondary p-facebook normal" aria-label="Follow us on Facebook (opens in new window)">
+                                <span class="sr-only">Facebook</span>
+                            </a>
+                            {% endif %}
+                            {% if enable_twitter and twitter_url %}
+                            <a href="{{twitter_url}}" target="_blank" rel="noopener noreferrer" class="pr p-secondary p-twitter normal" aria-label="Follow us on Twitter (opens in new window)">
+                                <span class="sr-only">Twitter</span>
+                            </a>
+                            {% endif %}
+                            {% if enable_linkedin and linkedin_url %}
+                            <a href="{{linkedin_url}}" target="_blank" rel="noopener noreferrer" class="pr p-secondary p-linkedin normal" aria-label="Follow us on LinkedIn (opens in new window)">
+                                <span class="sr-only">LinkedIn</span>
+                            </a>
+                            {% endif %}
+                            {% if enable_youtube and youtube_url %}
+                            <a href="{{youtube_url}}" target="_blank" rel="noopener noreferrer" class="pr p-secondary p-youtube normal" aria-label="Follow us on YouTube (opens in new window)">
+                                <span class="sr-only">YouTube</span>
+                            </a>
+                            {% endif %}
+                            {% if enable_instagram and instagram_url %}
+                            <a href="{{instagram_url}}" target="_blank" rel="noopener noreferrer" class="pr p-secondary p-instagram normal" aria-label="Follow us on Instagram (opens in new window)">
+                                <span class="sr-only">Instagram</span>
+                            </a>
+                            {% endif %}
+                            {% if this.theme.bluesky_url %}
+                            <a href="{{this.theme.bluesky_url}}" target="_blank" rel="noopener noreferrer" class="pr p-secondary p-bluesky small" aria-label="Follow us on Bluesky (opens in new window)">
+                                <span class="sr-only">Bluesky</span>
+                            </a>
+                            {% endif %}
+                            {% if this.theme.threads_url %}
+                            <a href="{{this.theme.threads_url}}" target="_blank" rel="noopener noreferrer" class="pr p-secondary p-threads small" aria-label="Follow us on Threads (opens in new window)">
+                                <span class="sr-only">Threads</span>
+                            </a>
+                            {% endif %}
+                        </div>
 
-                    <div class="button_su btn-zendo">
-                        <span class="su_button_circle">
-                        </span>
-                        <a href="https://zenodo.org/communities/spongeboost-eu/records?q=&l=list&p=1&s=10&sort=newest" class="button_su_inner" target="_blank">
+                        <div class="button_su btn-zendo">
+                            <span class="su_button_circle" aria-hidden="true"></span>
+                            <a href="https://zenodo.org/communities/spongeboost-eu/records?q=&l=list&p=1&s=10&sort=newest" class="button_su_inner" target="_blank" rel="noopener noreferrer" aria-label="View SpongeBoost publications on Zenodo (opens in new window)">
                           <span class="button_text_container">
-                            <img src="{{'zenodo.svg'|media}}" style="margin-bottom: -3px;">
+                            <img src="{{'zenodo.svg'|media}}" alt="Zenodo" style="margin-bottom: -3px;">
                           </span>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
+
+                    </nav>
+                    {% endif %}
+
+
 
                 </div>
-                {% endif %}
 
-
+                <div class="col-md-6 col-xs-12 menu_and_powered">
+                    <div class="col-xs-12 footer-logo-container">
+                        <img src="{{ 'assets/images/spon-logo.svg'|theme }}" alt="SpongeBoost logo">
+                    </div>
+                    <nav class="row between-xs footer_menu" aria-labelledby="footer-links-heading">
+                        <div class="col-xs-12 col-md-12 start-md center-xs">LINKS</div>
+                        <div class="col-xs-12 col-md-12 start-md center-xs">
+                            {% component 'footer_menu' %}
+                        </div>
+                    </nav>
+                    <div class="row between-xs">
+                        <div class="col-xs-12 powered-by start-md center-xs">
+                            <p>Designed and powered by
+                                <a href="https://pensoft.net/" target="_blank" rel="noopener noreferrer" aria-label="Pensoft website (opens in new window)">
+                                    <img class="pensoft_logo" src="{{ 'assets/images/pensoft-logo.svg'|theme }}" alt="Pensoft logo" />
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
             </div>
-
-            <div class="col-md-6 col-xs-12 menu_and_powered">
-                <div class="col-xs-12 footer-logo-container">
-                    <img src="{{ 'assets/images/spon-logo.svg'|theme }}" alt="">
-                </div>
-                <div class="row between-xs footer_menu">
-                    <div class="col-xs-12 col-md-12 start-md center-xs">LINKS</div>
-                    <div class="col-xs-12 col-md-12 start-md center-xs">
-                        {% component 'footer_menu' %}
-                    </div>
-                </div>
-                <div class="row between-xs">
-                    <div class="col-xs-12 powered-by start-md center-xs">
-                        <span>Designed and powered by <a href="https://pensoft.net/" target="_blank">
-                            <img class="pensoft_logo" src="{{ 'assets/images/pensoft-logo.svg'|theme }}" /></a>
-                        </span>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
-</div>
+</footer>

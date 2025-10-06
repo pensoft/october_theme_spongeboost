@@ -15,30 +15,33 @@ function onStart(){
 ==
 <h1 class="underline">Partners</h1>
 
-<div class="container">
+<section class="container" aria-label="Project partners">
     {% for partner in partners %}
-    <div class="col-xs-12 partner-item">
+    <article class="col-xs-12 partner-item">
         <div class="row middle-xs">
-            <div class="col-xs-12 col-md-2 start-md center-xs partner_cover"><img src="{{partner.cover.path}}"></div>
+            <div class="col-xs-12 col-md-2 start-md center-xs partner_cover">
+                <img src="{{partner.cover.path}}" alt="{{partner.instituion}} logo">
+            </div>
             <div class="col-xs-12 col-md-8 start-md center-xs partner_title">
-                <div class="instituion-title">{{partner.instituion}}</div>
+                <h2 class="instituion-title">{{partner.instituion}}</h2>
             </div>
             <div class="col-xs-12 col-md-2 end-md center-xs">
-                <span class="country_{{partner.country_code[0]}}"></span>
+                <span class="country_{{partner.country_code[0]}}" role="img" aria-label="{{partner.country_code[0]}} flag"></span>
             </div>
             <div class="col-xs-12 partner_description">{{partner.content|raw}}</div>
             <div class="col-xs-12 partner_link">
                 <div class="button_su">
-                <span class="su_button_circle">
-                </span>
-                    <a href="{{partner.instituion_url}}" class="button_su_inner">
-                    <span class="button_text_container">
-                    Visit website
-                    </span>
+                    <span class="su_button_circle" aria-hidden="true"></span>
+                    <a href="{{partner.instituion_url}}"
+                       class="button_su_inner"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       aria-label="Visit {{partner.instituion}} website (opens in new window)">
+                        <span class="button_text_container">Visit website</span>
                     </a>
                 </div>
             </div>
         </div>
-    </div>
+    </article>
     {% endfor %}
-</div>
+</section>

@@ -13,23 +13,32 @@ function onStart(){
 ?>
 ==
 {% component 'siteSearchInclude' %}
-<div class="container" id="work-packages">
+<section class="container" id="work-packages" aria-labelledby="work-packages-heading">
+    <h2 id="work-packages-heading" class="sr-only">Work Packages</h2>
     <div class="row top-xs work_packages">
 
-            {% for key, item in records %}
-                <div class="accordion-border key_{{key}}"><!-- 1 --><!-- css 1 -->
-                    <div class="row middle-xs accordion-toggle">
-                        <div class="col-xs-2 green_bullet">{{item.prefix}}</div>
+        {% for key, item in records %}
+        <article class="accordion-border key_{{key}}">
+            <h3 class="sr-only">{{item.prefix}} - {{item.title}}</h3>
+            <a class="row middle-xs accordion-toggle"
+                    aria-expanded="false"
+                    aria-controls="accordion-content-{{key}}"
+                    id="accordion-button-{{key}}">
+                <span class="col-xs-2 green_bullet">{{item.prefix}}</span>
 
-                        <div class="col-xs start-xs">{{item.title}}</div>
+                <span class="col-xs start-xs">{{item.title}}</span>
 
-                        <div class="col-xs-2 end-xs plusminus"><span class="plus"></span></div>
-                    </div>
+                <span class="col-xs-2 end-xs plusminus" aria-hidden="true"><span class="plus"></span></span>
+            </a>
 
-                    <div class="accordion-content" style="display: none;">
-                        {{item.body|raw}}
-                    </div>
-                </div>
-            {% endfor %}
+            <div class="accordion-content"
+                 id="accordion-content-{{key}}"
+                 role="region"
+                 aria-labelledby="accordion-button-{{key}}"
+                 style="display: none;">
+                {{item.body|raw}}
+            </div>
+        </article>
+        {% endfor %}
     </div>
-</div>
+</section>
