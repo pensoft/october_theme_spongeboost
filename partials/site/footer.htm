@@ -76,14 +76,25 @@ description_limit = 0
                             {% endif %}
                         </div>
 
-                        <div class="button_su btn-zendo">
-                            <span class="su_button_circle" aria-hidden="true"></span>
-                            <a href="https://zenodo.org/communities/spongeboost-eu/records?q=&l=list&p=1&s=10&sort=newest" class="button_su_inner" target="_blank" rel="noopener noreferrer" aria-label="View SpongeBoost publications on Zenodo (opens in new window)">
-                          <span class="button_text_container">
-                            <img src="{{'zenodo.svg'|media}}" alt="Zenodo" style="margin-bottom: -3px;">
-                          </span>
-                            </a>
+
+                        <div class="buttons">
+                            <div class="button_su">
+                                <span class="su_button_circle desplode-circle" aria-hidden="true"></span>
+                                <a class="button_su_inner" href="{{this.theme.subscribe}}" target="_blank" rel="noopener noreferrer" aria-label="Subscribe to our newsletter (opens in new window)">
+                                    <span class="button_text_container">Subscribe</span>
+                                </a>
+                            </div>
+
+                            <div class="button_su btn-zendo">
+                                <span class="su_button_circle" aria-hidden="true"></span>
+                                <a href="https://zenodo.org/communities/spongeboost-eu/records?q=&l=list&p=1&s=10&sort=newest" class="button_su_inner" target="_blank" rel="noopener noreferrer" aria-label="View SpongeBoost publications on Zenodo (opens in new window)">
+                              <span class="button_text_container">
+                                <img src="{{'zenodo.svg'|media}}" alt="Zenodo" style="margin-bottom: -3px;">
+                              </span>
+                                </a>
+                            </div>
                         </div>
+
 
                     </nav>
                     {% endif %}

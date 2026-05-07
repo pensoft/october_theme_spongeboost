@@ -719,10 +719,26 @@ ul.pagination{
     z-index: 2;
 
 
+    .buttons{
+        .breakpoint-large-down({
+            width: 100%;
+            display: flex;
+        });
+    }
     .button_su{
-        position: absolute;
-        bottom: -41px;
-        right: 20px;
+        //position: absolute;
+        //bottom: -41px;
+        //right: 20px;
+        margin-bottom: 0;
+        .button_su_inner{
+            height: 34px;
+            display: flex;
+            align-items: center;
+            &:hover{
+                color: white;
+            }
+        }
+
 
         .breakpoint-large-down({
             position: unset;
@@ -821,6 +837,7 @@ ul.pagination{
         .breakpoint-large-down ({
             margin-top: 20px;
             justify-content: center;
+            flex-direction: column;
         });
 
         .icons{

@@ -213,6 +213,7 @@ $(document).ready(function() {
 
     $('.library .form-wrapper, .library-items').wrapAll('<div class="container-fluid bg-secondary"><div class="container"></div></div>');
     $('.library .tabs').wrapAll('<div class="container"></div>');
+    $('#mylibraryForm a[data-type="6"]').text('Policy briefs');
     $('.library_content .row.center-xs.mb-1').wrapAll('<div class="container_relative"></div>');
 
     if(width > 1024){
