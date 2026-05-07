@@ -179,7 +179,6 @@ $(document).ready(function() {
 	// $('.icons a').attr('data-aos', 'fade-up');
 	$('.objective').attr('data-aos', 'fade-up');
 	$('.accordion-border').attr('data-aos', 'fade-up');
-	$('.news_column').attr('data-aos', 'fade-up');
 	$('.btn.btn-primary').attr('data-aos', 'zoom-in');
 	$('.library-item').attr('data-aos', 'fade-up');
 	$('.entry_item').attr('data-aos', 'fade-up');

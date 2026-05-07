@@ -137,6 +137,7 @@ ul.pagination{
     padding: 0;
     margin: 0 auto;
     width: fit-content;
+    padding-left: 0!important;
     .page-item{
         font-weight: bold;
     }
@@ -563,6 +564,8 @@ ul.pagination{
     justify-content: flex-end;
     align-items: center;
     position: relative;
+      top: -50px;
+      right: -15px;
     .breakpoint-large-down({
       display: none;
     });
@@ -578,6 +581,7 @@ ul.pagination{
       height: 45px;
       cursor: pointer;
       right: 20px;
+      border: none;
       &:hover{
         background: url("../../assets/images/arrows-news-hover.svg") center center no-repeat;
 
@@ -619,6 +623,9 @@ ul.pagination{
       padding: 20px;
       background: #F4FAFB;
       border-radius: 10px;
+        &:hover {
+            opacity: 0.6;
+        }
     }
 
     .event-body{
@@ -670,10 +677,12 @@ ul.pagination{
     position: relative !important;
     overflow: hidden !important;
     max-width: fit-content !important;
+      padding: 0;
+      margin: 0 auto;
   }
   .slick-dots li button:before{
     overflow: hidden;
-    font-size: 28px;
+    font-size: 45px;
     color: #00BDD6;
   }
 
@@ -896,7 +905,6 @@ ul.pagination{
 .footer_menu{
     color: #01BDD6;
     font-weight: 500;
-    margin-bottom: 50px;
     margin-top: 10px;
     a{
         color: @white-color;
@@ -1137,6 +1145,11 @@ footer .align-items-center{
     width: 972px;
     height: 270px;
     max-width: 100%;
+
+    .breakpoint-large-down({
+        height: 320px;
+    });
+
     .subscribe_newsletter_item{
         background: url("../../../../storage/app/media/newsletter-circles.svg") center no-repeat;
         background-size: cover;
@@ -1198,8 +1211,9 @@ footer .align-items-center{
         background: none;
         font-size: 18px;
         padding: 10px 20px;
-        .breakpoint-small-down({
+        .breakpoint-large-down({
             display: block;
+            margin-right: 0px;
             margin-left: 0px;
             width: 100%;
             padding: 5px 0;

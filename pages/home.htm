@@ -142,15 +142,17 @@ function onStart(){
     <div class="container pt-0 mt-0">
         <div class="entries-carousel" role="region" aria-live="polite" aria-label="Events carousel">
             {% for entry in entries %}
-            <article class="row home-event">
+            <a class="row home-event" href="/events/{{ entry.slug}}">
                 <div class="col-xs-12 event-head">
                     <h3 class="event-title">{{ entry.title|length > 70 ? entry.title|striptags|slice(0, 70)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : entry.title|striptags|replace({"&nbsp;": " ", ".": ". "})  }}</h3>
                 </div>
                 <div class="col-xs-12 event-body">
                     <time class="event-start" datetime="{{ entry.start|date('Y-m-d') }}">{{ entry.start|date("d F Y") }}</time>
+                    {% if entry.place %}
                     <div class="event-location">{{ entry.place }}</div>
+                    {% endif %}
                 </div>
-            </article>
+            </a>
             {% endfor %}
         </div>
     </div>
