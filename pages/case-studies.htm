@@ -1,4 +1,4 @@
-url = "/case-studies"
+url = "/case-studies/:id?|[a-zA-Z\-0-9]"
 layout = "default"
 title = "Case study areas"
 
@@ -6,53 +6,215 @@ title = "Case study areas"
 
 [jumbotron]
 jumbotron = "case-study"
+title = 1
 background = "translate"
 templates = "template3"
 description_limit = 0
 ==
 <?php
+use Pensoft\Casestudies\Models\Data;
+use Pensoft\Partners\Models\Partners;
+use RainLab\Location\Models\Country;
+
 function onStart(){
-    use Pensoft\Accordions\Models\Item;
-    $this['records'] = Item::where('category_id', 2)->get();
+    $slug = $this->param('id');
+
+    if ($slug) {
+        $caseStudy = Data::where('slug', $slug)->first();
+
+        if (!$caseStudy) {
+            return redirect('/case-studies');
+        }
+
+        // Resolve the ids stored inside the quick_facts repeater to display names.
+        $countries = Country::lists('name', 'id');
+
+        $this['caseStudy'] = $caseStudy;
+        $this['is_detail_page'] = true;
+        $this['countries'] = $countries;
+        $this['partners'] = Partners::lists('instituion', 'id');
+
+        // Build the header location string from the first quick fact (region, country).
+        $location = '';
+        if (!empty($caseStudy->quick_facts)) {
+            $firstFact = $caseStudy->quick_facts[0];
+            $parts = [];
+            if (!empty($firstFact['region'])) {
+                $parts[] = $firstFact['region'];
+            }
+            if (!empty($firstFact['country']) && isset($countries[$firstFact['country']])) {
+                $parts[] = $countries[$firstFact['country']];
+            }
+            $location = implode(', ', $parts);
+        }
+        $this['caseStudyLocation'] = $location;
+
+        return;
+    }
+
+    $this['is_detail_page'] = false;
+    $this['records'] = Data::orderBy('sort_order')->get();
 }
 ?>
 ==
 {% component 'siteSearchInclude' %}
-{% component 'jumbotron' %}
-<section class="container" aria-labelledby="pilots-heading">
-    <h2 id="pilots-heading" class="sr-only">Pilot Sites</h2>
-    <div class="row top-xs">
-        <div class="col-md-6 col-xs-12 pilots">
-            {% for key, item in records %}
-            <article class="accordion-border key_{{key}}">
-                <h3 class="sr-only">{{item.title}}</h3>
-                <button class="row middle-xs accordion-toggle"
-                        aria-expanded="false"
-                        aria-controls="pilot-content-{{key}}"
-                        id="pilot-button-{{key}}">
-                    <span class="col-xs-1 green_bullet {{item.title|slug}}" aria-hidden="true">&nbsp;</span>
 
-                    <span class="col-xs start-xs">{{item.title}}</span>
 
-                    <span class="col-xs-2 end-xs plusminus" aria-hidden="true"><span class="plus"></span></span>
-                </button>
+{% if is_detail_page %}
+<main id="main-content" role="main">
+    <section class="container single-case-study" aria-labelledby="case-study-title">
 
-                <div class="accordion-content"
-                     id="pilot-content-{{key}}"
-                     role="region"
-                     aria-labelledby="pilot-button-{{key}}"
-                     style="display: none;">
-                    {{item.body|raw}}
+        <nav class="col-xs-12 go-back" aria-label="Breadcrumb">
+            <a href="/case-studies" class="col-xs-12 back-to-news">&lt; Back to case studies</a>
+        </nav>
+
+        <div class="row case-study-description between-md around-xs">
+            <div class="col-md-8 col-xs-12">
+                {% if caseStudy.description %}
+                <div class="col-xs-12">
+                    {{ caseStudy.description|raw }}
                 </div>
-            </article>
-            {% endfor %}
-        </div>
-        <div class="col-md-6 col-xs-12">
-
-            <div class="pilots_svg_map_container" role="img" aria-label="Interactive map of pilot site locations">
-                <div class="tooltiptext" id="tooltip" role="tooltip" aria-live="polite">Bulgaria</div>
-                {% partial 'map' %}
+                {% endif %}
+            </div>
+            <div class="col-md-3 col-xs-12">
+                {% if caseStudy.quick_facts %}
+                <section class="col-xs-12 case-study-quick-facts" aria-labelledby="quick-facts-heading">
+                    <div class="quick-facts-header">
+                        <h2 id="quick-facts-heading">Quick Facts</h2>
+                    </div>
+                    <div class="quick-facts-body">
+                    {% for fact in caseStudy.quick_facts %}
+                    <dl class="quick-facts-list">
+                        {% if fact.country and countries[fact.country] %}
+                        <div class="quick-fact">
+                            <dt>Country</dt>
+                            <dd>{{ countries[fact.country] }}</dd>
+                        </div>
+                        {% endif %}
+                        {% if fact.region %}
+                        <div class="quick-fact">
+                            <dt>Region</dt>
+                            <dd>{{ fact.region }}</dd>
+                        </div>
+                        {% endif %}
+                        {% if fact.name_of_site %}
+                        <div class="quick-fact">
+                            <dt>Name of the site</dt>
+                            <dd>{{ fact.name_of_site }}</dd>
+                        </div>
+                        {% endif %}
+                        {% if fact.type_of_sponge_territory %}
+                        <div class="quick-fact">
+                            <dt>Type of Sponge territory</dt>
+                            <dd>{{ fact.type_of_sponge_territory }}</dd>
+                        </div>
+                        {% endif %}
+                        {% if fact.primary_water_source %}
+                        <div class="quick-fact">
+                            <dt>Primary water source</dt>
+                            <dd>{{ fact.primary_water_source }}</dd>
+                        </div>
+                        {% endif %}
+                        {% if fact.secondary_water_source %}
+                        <div class="quick-fact">
+                            <dt>Secondary water source</dt>
+                            <dd>{{ fact.secondary_water_source }}</dd>
+                        </div>
+                        {% endif %}
+                        {% if fact.partner and partners[fact.partner] %}
+                        <div class="quick-fact">
+                            <dt>Partner</dt>
+                            <dd>{{ partners[fact.partner] }}</dd>
+                        </div>
+                        {% endif %}
+                    </dl>
+                    {% endfor %}
+                    </div>
+                </section>
+                {% endif %}
+                {% if caseStudy.attachment %}
+                <aside class="case-study-factsheet" aria-label="Case study fact sheet">
+                    <p class="case-study-factsheet-text">See the progress of SpongeBoost's work in this case study site</p>
+                    <a class="case-study-factsheet-btn" href="{{ caseStudy.attachment.getPath() }}" target="_blank" rel="noopener noreferrer" download="{{ caseStudy.attachment.file_name }}">
+                        <span>View Fact sheet</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12h14M13 6l6 6-6 6" stroke="#00292f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </aside>
+                {% endif %}
+            </div>
+            <div class="col-md-12 col-xs-12">
+                {% if caseStudy.gallery.count %}
+                <section class="col-xs-12 case-study-gallery" aria-labelledby="gallery-heading">
+                    <h2 id="gallery-heading" class="case-study-gallery-heading">Gallery</h2>
+                    <div class="case-study-gallery-carousel">
+                        {% for image in caseStudy.gallery %}
+                        <div class="case-study-gallery-slide">
+                            <img src="{{ image.thumb(1272, 592, { mode: 'crop' }) }}" alt="{{ image.description ?: caseStudy.title }}" />
+                            <span class="case-study-gallery-shade" aria-hidden="true"></span>
+                            {% if image.title %}
+                            <div class="case-study-gallery-caption">{{ image.title }}</div>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </section>
+                {% endif %}
             </div>
         </div>
+
+    </section>
+</main>
+
+<script>
+    $(function () {
+        if ($.fn.slick) {
+            $('.case-study-gallery-carousel').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: true,
+                dots: true,
+                infinite: true,
+                adaptiveHeight: false
+            });
+        }
+    });
+</script>
+
+{% else %}
+<div class="container-fluid case-studies-container">
+    <section class="container" aria-labelledby="pilots-heading">
+        <h2 id="pilots-heading" class="sr-only">Pilot Sites</h2>
+        <div class="row top-xs">
+            <div class="col-md-6 col-xs-12 pilots">
+                {% component 'jumbotron' %}
+            </div>
+            <div class="col-md-6 col-xs-12">
+
+
+            </div>
+        </div>
+    </section>
+    <div class="pilots_svg_map_container" role="img" aria-label="Interactive map of pilot site locations">
+        <div class="tooltiptext" id="tooltip" role="tooltip" aria-live="polite">Bulgaria</div>
+        {% partial 'map' %}
     </div>
+</div>
+<section class="case-studies-list-section" aria-labelledby="case-studies-list-heading">
+    <h2 id="case-studies-list-heading" class="sr-only">Case studies</h2>
+    <ul class="case-studies-list">
+        {% for record in records %}
+        <li class="case-study-card">
+            <a class="case-study-card-link {{ record.slug }}" href="/case-studies/{{ record.slug }}" aria-label="{{ record.title }}">
+                <span class="case-study-card-overlay" aria-hidden="true"></span>
+                <span class="case-study-card-title">{{ record.title }}</span>
+                <span class="case-study-card-logo {{ record.slug }}" aria-hidden="true"></span>
+            </a>
+        </li>
+        {% else %}
+        <li class="case-study-empty" role="status">No case studies yet.</li>
+        {% endfor %}
+    </ul>
 </section>
+{% endif %}

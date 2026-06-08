@@ -15,9 +15,536 @@ g#location-icon-7
     }
 }
 
-//.pilots_svg_map_container{
-//    position: relative;
-//}
+.pilots_svg_map_container{
+    position: absolute;
+    width: auto;
+    max-width: 50%;
+    height: 100%;
+    right: 0;
+    top: 0;
+    .breakpoint-large-down({
+        width: 100%;
+        max-width: 100%;
+        position: relative;
+    });
+
+    .relative_position{
+        position: relative;
+        top: 0;
+        right: 0;
+    }
+}
+
+.case-studies-container{
+    position: relative;
+    h1.display-1{
+        line-height: 1.3em;
+    }
+}
+
+/* Case studies card list (full-width, inline cards) */
+.case-studies-list-section{
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.case-studies-list{
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    .case-study-card{
+        flex: 1 1 0;
+        min-width: 0;
+    }
+
+    .case-study-card-link{
+        position: relative;
+        display: block;
+        width: 100%;
+        aspect-ratio: 206 / 542;
+        overflow: hidden;
+        background-color: #155a63;
+        background-size: cover;
+        background-position: top center;
+        background-repeat: no-repeat;
+        text-decoration: none;
+
+        &.alam-pedja, &.alam-pedja-2{
+            background-image: url("../../assets/images/casestudies/Alam-Pedja.png");
+        }
+        &.graminhais-plateau, &.graminhais-plateau-2{
+            background-image: url("../../assets/images/casestudies/Graminhais-Plateau.png");
+        }
+        &.parnu-catchment, &.parnu-catchment-2{
+            background-image: url("../../assets/images/casestudies/P%C3%A4rnu-Catchment.png");
+        }
+        &.schneifel, &.schneifel-2{
+            background-image: url("../../assets/images/casestudies/Schneifel-Eifel-Germany.png");
+        }
+        &.serra-do-xistral-peatlands, &.serra-do-xistral-peatlands-2{
+            background-image: url("../../assets/images/casestudies/Serra-do-Xistral-Peatlands.png");
+        }
+        &.sotos-de-alfaro, &.sotos-de-alfaro-2{
+            background-image: url("../../assets/images/casestudies/Sotos-de-Alfaro.png");
+        }
+        &.weisse-elster, &.weisse-elster-2{
+            background-image: url("../../assets/images/casestudies/Wei%C3%9Fe-Elster.png");
+        }
+    }
+
+    .case-study-card-overlay{
+        position: absolute;
+        inset: 0;
+        transition: opacity .4s ease;
+        //background: linear-gradient(to bottom,
+        //    #155a63 0%,
+        //    rgba(74, 180, 195, 0.59) 48%,
+        //    rgba(21, 90, 99, 0.52) 100%);
+    }
+
+    .case-study-card-title{
+        position: absolute;
+        top: 5%;
+        left: 0;
+        right: 0;
+        padding: 0 18px;
+        color: #fff;
+        text-align: center;
+        font-family: RedHatDisplay;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: normal;
+        word-break: break-word;
+    }
+
+    .case-study-card-logo{
+        position: absolute;
+        bottom: 16px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40px;
+        height: 29px;
+        z-index: 9;
+
+        &.san-miguel-island, &.graminhais-plateau, &.graminhais-plateau-2{
+            background: url("../../assets/images/Flag_of_the_Azores.svg") left center no-repeat;
+            background-size: contain;
+        }
+        &.xistral-mountains-of-galicia, &.sotos-de-alfaro, &.serra-do-xistral-peatlands, &.xistral-mountains-of-galicia-2, &.sotos-de-alfaro-2, &.serra-do-xistral-peatlands-2{
+            background: url("../../assets/images/Flag_of_Spain.svg") left center no-repeat;
+            background-size: contain;
+        }
+        &.ebro{
+            background: url("../../assets/images/Flag_of_Spain.svg") left center no-repeat;
+            background-size: contain;
+        }
+        &.eifel-high-fens{
+            background: url("../../assets/images/Flag_of_Belgium.svg") left center no-repeat;
+            background-size: contain;
+        }
+        &.weisse-elster, &.schneifel, &.weisse-elster-2, &.schneifel-2{
+            background: url("../../assets/images/Flag_of_Germany.svg") left center no-repeat;
+            background-size: contain;
+        }
+        &.parnu-catchment, &.parnu-catchment-2{
+            background: url("../../assets/images/Flag_of_Estonia.svg") left center no-repeat;
+            background-size: contain;
+        }
+        &.alam-pedja{
+            background: url("../../assets/images/Flag_of_Estonia.svg") left center no-repeat;
+            background-size: contain;
+        }
+    }
+
+    .case-study-card-link::after{
+        content: "";
+        position: absolute;
+        inset: 0;
+        transform: translateY(100%);
+        transition: transform 0.6s ease;
+        background: linear-gradient(to top, #155A63 10.92%, rgba(74, 180, 195, 0.59) 70.92%, rgba(21, 90, 99, 0) 100% 100%);
+        pointer-events: none;
+    }
+
+    .case-study-card-link:hover::after{
+        transform: translateY(0);
+    }
+
+    .breakpoint-large-down({
+        flex-wrap: wrap;
+        .case-study-card{
+            flex: 1 1 calc(50% - 16px);
+        }
+    });
+
+    .breakpoint-medium-down({
+        .case-study-card{
+            flex: 1 1 100%;
+        }
+    });
+}
+
+/* Case study detail - quick facts card */
+.case-study-quick-facts{
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    overflow: hidden;
+    padding: 0!important;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
+
+    .quick-facts-header{
+        padding: 24px;
+        background: linear-gradient(90deg, #9BC622 0%, #01BDD6 100%);
+
+        h2{
+            margin: 0;
+            color: #fff;
+            font-family: RedHatDisplay;
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 28px;
+        }
+    }
+
+    .quick-facts-body{
+        padding: 24px;
+    }
+
+    .quick-facts-list{
+        margin: 0;
+        padding: 0;
+    }
+
+    .quick-fact{
+        padding-bottom: 16px;
+        margin-bottom: 16px;
+        border-bottom: 1px solid #f3f4f6;
+
+        &:last-child{
+            padding-bottom: 0;
+            margin-bottom: 0;
+            border-bottom: 0;
+        }
+
+        dt{
+            margin: 0 0 4px;
+            color: #737373;
+            font-family: RedHatDisplay;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 16px;
+        }
+
+        dd{
+            margin: 0;
+            color: #00292f;
+            font-family: RedHatDisplay;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 20px;
+        }
+    }
+}
+
+.single-case-study .go-back{
+    margin-bottom: 40px;
+}
+
+/* Case study detail - fact sheet download card */
+.case-study-factsheet{
+    position: relative;
+    overflow: hidden;
+    margin-top: 24px;
+    padding: 36px 33px;
+    border-radius: 24px;
+    background: linear-gradient(90deg, #9BC622 0%, #01BDD6 100%);
+
+    .case-study-factsheet-text{
+        margin: 0 0 31px;
+        max-width: 290px;
+        color: #fff;
+        font-family: RedHatDisplay;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 30px;
+    }
+
+    .case-study-factsheet-btn{
+        display: inline-flex;
+        align-items: center;
+        gap: 17px;
+        height: 48px;
+        padding: 0 24px;
+        border-radius: 9999px;
+        background: #fff;
+        box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.1);
+        color: #00292f;
+        font-family: RedHatDisplay;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 28px;
+        text-decoration: none;
+
+        svg{
+            width: 20px;
+            height: 20px;
+            transition: transform .3s ease;
+        }
+
+        &:hover{
+            color: #00292f;
+
+            svg{
+                transform: translateX(4px);
+            }
+        }
+    }
+}
+
+/* Case study detail - description images (round shape + gradient bubbles) */
+.case-study-description{
+    .case-study-row{
+        margin-bottom: 32px;
+        align-items: center;
+
+        .case-study-text{
+            padding: 0 30px;
+            .breakpoint-large-down({
+                padding: 0;
+            });
+        }
+    }
+
+    .case-study-media{
+        position: relative;
+        align-self: center;
+
+        /* top-left bubble: white -> light green (diagonal) */
+        &::before{
+            content: "";
+            position: absolute;
+            z-index: 2;
+            top: -4px;
+            left: 12px;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(196, 224, 140, 0.85) 60%, rgba(155, 198, 34, 0.50) 100%);
+            //filter: blur(1.5px);
+            pointer-events: none;
+        }
+
+        /* bottom-right bubble: light green -> white (vertical) */
+        &::after{
+            content: "";
+            position: absolute;
+            z-index: 2;
+            right: 7px;
+            bottom: 4px;
+            width: 74px;
+            height: 74px;
+            border-radius: 50%;
+            background: linear-gradient(180deg, rgba(178, 210, 110, 0.85) 0%, rgba(223, 239, 198, 0.60) 55%, rgba(255, 255, 255, 0.40) 100%);
+            //filter: blur(1.5px);
+            pointer-events: none;
+        }
+    }
+
+    .case-study-image{
+        position: relative;
+        z-index: 0;
+        display: block;
+        width: 100%;
+        height: auto;
+        margin: 0;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    h3{
+        color: #00292F;
+        font-family: "RedHatDisplay";
+        font-size: 30px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 36px; /* 120% */
+    }
+}
+
+/* Case study detail - gallery carousel */
+.case-study-gallery{
+    margin-top: 24px;
+
+    .case-study-gallery-heading{
+        margin: 0 0 24px;
+        color: #00292f;
+        font-family: RedHatDisplay;
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 36px;
+    }
+
+    .case-study-gallery-carousel{
+        position: relative;
+
+        /* avoid flash of stacked slides before slick initializes */
+        &:not(.slick-initialized){
+            .case-study-gallery-slide{
+                display: none;
+
+                &:first-child{
+                    display: block;
+                }
+            }
+        }
+
+        .case-study-gallery-slide{
+            position: relative;
+
+            img{
+                display: block;
+                width: 100%;
+                aspect-ratio: 1272 / 592;
+                height: auto;
+                object-fit: cover;
+                border-radius: 10px;
+            }
+        }
+
+        .case-study-gallery-shade{
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 92px;
+            border-radius: 0 0 10px 10px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+            pointer-events: none;
+        }
+
+        .case-study-gallery-caption{
+            position: absolute;
+            left: 24px;
+            right: 24px;
+            bottom: 22px;
+            color: #fff;
+            font-family: RedHatDisplay;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 22px;
+        }
+
+        /* prev / next buttons */
+        .slick-prev,
+        .slick-next{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            padding: 0;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            color: transparent;
+            font-size: 0;
+
+            &:hover,
+            &:focus{
+                background: #fff;
+            }
+
+            &:before{
+                content: "";
+                display: block;
+                width: 10px;
+                height: 10px;
+                border-top: 2px solid #00292f;
+                border-right: 2px solid #00292f;
+                opacity: 1;
+            }
+        }
+
+        .slick-prev{
+            left: 24px;
+
+            &:before{
+                transform: rotate(-135deg);
+                margin-left: 4px;
+            }
+        }
+
+        .slick-next{
+            right: 24px;
+
+            &:before{
+                transform: rotate(45deg);
+                margin-right: 4px;
+            }
+        }
+
+        /* dots */
+        .slick-dots{
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 22px;
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+
+            li{
+                width: 10px;
+                height: 10px;
+                margin: 0;
+
+                button{
+                    width: 10px;
+                    height: 10px;
+                    padding: 0;
+                    border: 0;
+                    border-radius: 3px;
+                    background: rgba(255, 255, 255, 0.5);
+                    text-indent: -9999px;
+                    cursor: pointer;
+
+                    &:before{
+                        display: none;
+                    }
+                }
+
+                &.slick-active button{
+                    background: #fff;
+                }
+            }
+        }
+    }
+
+    .breakpoint-large-down({
+        .case-study-gallery-heading{
+            font-size: 24px;
+            line-height: 30px;
+        }
+        .case-study-gallery-carousel{
+            .slick-prev{ left: 12px; }
+            .slick-next{ right: 12px; }
+        }
+    });
+}
 
 .tooltiptext {
   display: none;

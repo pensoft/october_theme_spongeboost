@@ -668,22 +668,24 @@ function handlePilotsSVGMapMouseMove(event) {
     var tooltip = document.getElementById("tooltip");
 
     switch (title) {
-        case 'San Miguel Island':
-        case 'Xistral Mountains of Galicia':
-        case 'Ebro':
-        case 'Eifel - High Fens':
-        case 'Weiße Elster catchment':
-        case 'Pärnu catchment':
+        case 'Graminhais Plateau':
+        case 'Serra do Xistral Peatlands':
+        case 'Sotos de Alfaro':
+        case 'Schneifel':
+        case 'Weiße Elster':
+        case 'Pärnu Catchment':
         case 'Alam-Pedja':
             break;
         default:
             return tooltip.classList.remove("active");
     }
-    // var x = event.clientX;
-    // var y = event.clientY;
+    // Position the tooltip relative to its offset parent (the map container),
+    // not the document, otherwise it lands off-screen and creates scrollbars.
+    var targetOffset = $(event.target).offset();
+    var parentOffset = $(tooltip).offsetParent().offset();
 
-    var x = $(event.target).offset().left;
-    var y = $(event.target).offset().top;
+    var x = targetOffset.left - parentOffset.left;
+    var y = targetOffset.top - parentOffset.top;
 
     tooltip.style.left = (x + 30) + "px";
     tooltip.style.top = (y - 30) + "px";
