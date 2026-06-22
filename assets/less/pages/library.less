@@ -181,8 +181,8 @@
             font-size: 18px;
             color: #122642;
             box-sizing: border-box;
-            padding: 0.7rem 1rem;
-            line-height: 1.3em;
+            padding: 0 1rem;
+            line-height: normal;
         }
         select{
             -webkit-appearance: none;
@@ -218,8 +218,11 @@
         });
     }
 
-
-
+    .input-group{
+        display: flex;
+        align-items: stretch;
+        height: 47px;
+    }
 
     .form-control {
         display: block;
@@ -234,32 +237,40 @@
         border-right: none;
         .rounded-tl(25px);
         .rounded-bl(25px);
-        height: 45px!important;
+        height: 47px!important;
+        line-height: normal;
         padding: 0 0 0 18px;
     }
 
     .btn.searchLibrary {
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-        padding-left: 0 !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 !important;
         line-height: unset !important;
         border-top-right-radius: 25px;
         border-bottom-right-radius: 25px;
         border-bottom: 1px solid @border-color;
         border-top: 1px solid @border-color;
         border-right: 1px solid @border-color;
-        padding: 0;
         height: 47px;
         width: 67px;
         background: white url(../../assets/images/search_grey.svg) center no-repeat;
-        background-size: 26px;
+        background-size: 20px;
     }
 
     #clearBtn{
+        display: flex;
+        align-items: center;
+        justify-content: center;
         border-top: 1px solid @border-color;
         border-bottom: 1px solid @border-color;
         background: white;
         height: 47px;
+        padding: 0 10px;
+        font-size: 16px;
+        color: #707070;
+        line-height: 1;
     }
 
     .breakpoint-large-down({
@@ -355,6 +366,7 @@
         .breakpoint-small-down({
             display: block;
             margin-left: 0px;
+            margin-right: 0;
             width: 100%;
             padding: 5px 0;
             text-align: center;
@@ -377,6 +389,12 @@
 
         &:last-of-type{
             margin-right: 0;
+            .breakpoint-small-down({
+                /* Keep the active last tab centered: the desktop margin-right:0
+                   was overriding the .active `margin: 0 auto`, which pushed the
+                   last tab to the right when active on mobile. */
+                margin-right: auto;
+            });
         }
     }
 }

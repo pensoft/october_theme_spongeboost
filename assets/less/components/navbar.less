@@ -439,6 +439,15 @@
 
 @media (max-width:1000px) {
 
+    /* The subscribe button (.button_su_inner z-index:100000 /
+       .button_text_container z-index:10000) sits above the navbar's
+       @zindex-fixed (9999), so it bleeds over the open mobile menu. The #menu
+       overlay lives inside the navbar's stacking context, so it can only be
+       lifted above that button by raising the whole navbar above it. */
+    .navbar.fixed{
+        z-index: 100001;
+    }
+
     /* menu toggle effect mobile */
 
     #menuToggle {
@@ -566,6 +575,26 @@
         float: left;
         width: 100%;
         display: block!important;
+        &:before{
+            line-height: 2em;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        &.p-twitter{
+            &:before{
+                font-size: 18px;
+            }
+        }
+
+        &.p-youtube{
+            &:before{
+                font-size: 24px;
+                margin-top: 2px;
+            }
+        }
     }
 
     #menu li:not(.social) a{
@@ -589,6 +618,19 @@
         .dropdown-menu{
             padding-left: 0!important;
         }
+    }
+
+    /* Submenus in the mobile burger menu must ALWAYS be visible. The global
+       `.dropdown .dropdown-menu` rule starts them at opacity:0 and relies on the
+       rotateX entrance animation to reveal them – that animation is unreliable on
+       iOS Safari and can leave them stuck hidden. Force them visible here. */
+    #menu .dropdown-menu,
+    #menuToggle .dropdown-menu{
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        animation: none !important;
     }
 
     #menu .dropdown-menu li a{
@@ -652,9 +694,17 @@
         a{
             color: @link-color;
             display: inline-flex;
+            align-items: center;
+            justify-content: center;
             margin: 5px 4px;
             width: 33px!important;
             height: 33px;
+            /* Normalise the icon-font glyphs so X / LinkedIn / YouTube render at
+               the same size – the `.big` modifier sizes them differently
+               (p-twitter is 1.4 vs 1.8 and gets an 11px top nudge). */
+            font-size: 22px !important;
+            line-height: 1 !important;
+            margin-top: 5px !important;
             &:hover{
                 opacity: 0.7!important;
             }

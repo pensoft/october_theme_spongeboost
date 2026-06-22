@@ -326,7 +326,12 @@ nav:not(.navbar){
                         line-height: 1.3em;
                         text-align: left;
                         padding: 0 30px;
-                        height: -webkit-fill-available;
+                        /* Fill the remaining card height via flex growth.
+                           `-webkit-fill-available` is unreliable on iOS Safari
+                           (resolves against the viewport), which inflated this
+                           box and left a huge gap before .read-more-container. */
+                        flex: 1 1 auto;
+                        min-height: 0;
 
                         h3, h2{
                             line-height: 1.3em;
@@ -567,6 +572,7 @@ nav:not(.navbar){
     /* Custom slick dots for news highlights on homepage */
     .slick-dots {
         text-align: center;
+        padding-left: 0!important;
         li {
             display: inline-block;
             margin: 0 5px;

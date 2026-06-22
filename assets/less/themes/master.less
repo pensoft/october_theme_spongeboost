@@ -67,6 +67,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .title, .head, .page_headi
   color: @secondary-btn-color;
 
     font-weight: 600;
+
 }
 h1, h2{
   font-size: 40px;
@@ -371,6 +372,12 @@ ul.pagination{
       justify-content: center;
     })
   }
+  #latest-news-heading{
+    .breakpoint-large-down({
+      text-align: center;
+      margin-top: 30px;
+    });
+  }
   .read-more{
     margin-bottom: 20px;
   }
@@ -445,6 +452,61 @@ ul.pagination{
       }
     }
   }
+
+  /* Mobile: stack the two news cards as identical full-width blocks with an
+     even gap. The right card is a side-by-side row with a fixed 205px image,
+     so without this it renders at a different size/layout than the left one. */
+  .breakpoint-large-down({
+    .latest-news,
+    .highlight-news{
+      width: 100%;
+      flex-basis: 100%;
+      max-width: 100%;
+    }
+
+    .highlight-news{
+      display: block;        /* remove the flex centering */
+      padding-left: 0;       /* no side padding – the inner container already pads */
+      padding-right: 0;
+    }
+
+    .news-card{
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 20px;
+      margin: 0 0 24px;      /* space between the cards */
+    }
+
+    .highlight-news .news-card:last-of-type{
+      margin-bottom: 0;
+    }
+
+    .news-card .img-container{
+      width: 100% !important;
+      height: 200px !important;
+      padding: 0 !important;
+      margin-bottom: 20px;
+
+      img{
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover;
+      }
+    }
+
+    .news-card .content-container{
+      width: 100%;
+      max-width: 100%;
+      flex-basis: 100%;
+      padding: 0;
+
+      .col-xs-12{
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  });
 }
 
 .header-image{
@@ -693,6 +755,8 @@ ul.pagination{
     .breakpoint-large-down({
       display: flex;
       justify-content: center;
+      text-align: center;
+      margin-top: 30px;
     });
   }
 
@@ -767,6 +831,10 @@ ul.pagination{
   .entries-carousel .home-event{
     width: 400px;
     margin-right: 40px;
+    .breakpoint-large-down({
+      width: 100%;
+      margin-right: 0;
+    });
     .event-head{
       min-height: 104px;
       font-weight: 600;
@@ -831,6 +899,7 @@ ul.pagination{
     overflow: hidden !important;
     max-width: fit-content !important;
       padding: 0;
+      padding-left: 0!important;
       margin: 0 auto;
   }
   .slick-dots li button:before{

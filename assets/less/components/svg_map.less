@@ -17,14 +17,16 @@ g#location-icon-7
 
 .pilots_svg_map_container{
     position: absolute;
-    width: auto;
+    width: 50%;
     max-width: 50%;
     height: 100%;
+    left: auto;
     right: 0;
     top: 0;
     .breakpoint-large-down({
         width: 100%;
         max-width: 100%;
+        left: 0;
         position: relative;
     });
 
@@ -37,8 +39,23 @@ g#location-icon-7
 
 .case-studies-container{
     position: relative;
-    h1.display-1{
-        line-height: 1.3em;
+
+    /* On large screens the section height is driven by the short text column,
+       which leaves the (square) map small. Give the section a minimum height so
+       the map – sized to 100% of this container – scales up to fill the space. */
+    .breakpoint-large({
+        min-height: 520px;
+        .container{
+            padding-bottom: 0;
+        }
+    });
+    .breakpoint-huge({
+        min-height: 640px;
+    });
+
+    h1.display-1,
+    h2.display-1{
+        line-height: 1.2em;
     }
 }
 
@@ -314,6 +331,10 @@ g#location-icon-7
 
         .case-study-text{
             padding: 0 30px;
+
+            h3{
+                margin-bottom: 12px;
+            }
             .breakpoint-large-down({
                 padding: 0;
             });
@@ -500,6 +521,7 @@ g#location-icon-7
             left: 0;
             right: 0;
             bottom: 22px;
+            padding-left: 0!important;
             display: flex;
             justify-content: center;
             gap: 4px;

@@ -32,7 +32,13 @@ $(document).ready(function() {
 
 
 
-    document.querySelector('.header-image video').playbackRate = 0.7;
+    // Guard: case-study detail pages render a header bar without a <video>,
+    // so this would throw and abort the rest of $(document).ready (including the
+    // mobile menu toggle handler below), breaking the navbar on those pages.
+    var headerImageVideo = document.querySelector('.header-image video');
+    if (headerImageVideo) {
+        headerImageVideo.playbackRate = 0.7;
+    }
 
 	var headerNavbar = $('#headerNavbar');
 	var width100 = $('.width100');
