@@ -92,52 +92,43 @@ return Response::download($pathToFile, $fileName, $headers);
                 <div class="links">
                     {% if record.file_jpg %}
                     <div class="button_su">
-                        {{form_open({ request: 'onDownloadFile' }) }}
-                        <input type="hidden" value="{{record.file_jpg.id}}" name="id">
                         <span class="su_button_circle desplode-circle" aria-hidden="true"></span>
-                        <button type="submit"
-                                data-attach-loading
-                                class="btn button_su_inner"
-                                aria-label="Download {{record.name}} logo in JPG format">
+                        <a href="{{record.file_jpg.path}}"
+                           download="{{record.file_jpg.file_name}}"
+                           class="btn button_su_inner matomo_download"
+                           aria-label="Download {{record.name}} logo in JPG format">
                         <span class="button_text_container">
                             <i class="pr normal p-download" aria-hidden="true"></i>JPG
                         </span>
-                        </button>
-                        {{ form_close() }}
+                        </a>
                     </div>
                     {% endif %}
 
                     {% if record.file_png %}
                     <div class="button_su">
-                        {{form_open({ request: 'onDownloadFile' }) }}
-                        <input type="hidden" value="{{record.file_png.id}}" name="id">
                         <span class="su_button_circle desplode-circle" aria-hidden="true"></span>
-                        <button type="submit"
-                                data-attach-loading
-                                class="btn button_su_inner"
-                                aria-label="Download {{record.name}} logo in PNG format">
+                        <a href="{{record.file_png.path}}"
+                           download="{{record.file_png.file_name}}"
+                           class="btn button_su_inner matomo_download"
+                           aria-label="Download {{record.name}} logo in PNG format">
                         <span class="button_text_container">
                             <i class="pr normal p-download" aria-hidden="true"></i>PNG
                         </span>
-                        </button>
-                        {{ form_close() }}
+                        </a>
                     </div>
                     {% endif %}
 
                     {% if record.file_eps %}
                     <div class="button_su">
-                        {{form_open({ request: 'onDownloadFile' }) }}
-                        <input type="hidden" value="{{record.file_eps.id}}" name="id">
                         <span class="su_button_circle desplode-circle" aria-hidden="true"></span>
-                        <button type="submit"
-                                data-attach-loading
-                                class="btn button_su_inner"
-                                aria-label="Download {{record.name}} logo in SVG vector format">
+                        <a href="{{record.file_eps.path}}"
+                           download="{{record.file_eps.file_name}}"
+                           class="btn button_su_inner matomo_download"
+                           aria-label="Download {{record.name}} logo in SVG vector format">
                         <span class="button_text_container">
                             <i class="pr normal p-download" aria-hidden="true"></i>SVG
                         </span>
-                        </button>
-                        {{ form_close() }}
+                        </a>
                     </div>
                     {% endif %}
 

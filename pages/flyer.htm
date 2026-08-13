@@ -101,18 +101,15 @@ return Response::download($pathToFile, $fileName, $headers);
                     </div>
                     {% else %}
                     <div class="button_su">
-                        {{form_open({ request: 'onDownloadFile' }) }}
-                        <input type="hidden" value="{{record.file.id}}" name="id">
                         <span class="su_button_circle desplode-circle" aria-hidden="true"></span>
-                        <button type="submit"
-                                data-attach-loading
-                                class="btn button_su_inner"
-                                aria-label="Download {{record.name}} promotional material">
+                        <a href="{{record.file.path}}"
+                           download="{{record.file.file_name}}"
+                           class="btn button_su_inner matomo_download"
+                           aria-label="Download {{record.name}} promotional material">
                                             <span class="button_text_container">
                                                 <i class="pr normal p-download" aria-hidden="true"></i>Download
                                             </span>
-                        </button>
-                        {{ form_close() }}
+                        </a>
                     </div>
                     {% endif %}
                     {% endif %}

@@ -10,11 +10,8 @@
             <div class="links">
                 {% if record.file %}
                 <div class="button_su">
-                    {{form_open({ request: 'onDownloadFile' }) }}
-                    <input type="hidden" value="{{record.file.id}}" name="id">
                     <span class="su_button_circle desplode-circle"></span>
-                    <button type="submit" data-attach-loading class="btn button_su_inner"><span class="button_text_container"><i class="pr normal p-download"></i>Download</span></button>
-                    {{ form_close() }}
+                    <a href="{{record.file.path}}" download="{{record.file.file_name}}" class="btn button_su_inner matomo_download" aria-label="Download {{record.title}}"><span class="button_text_container"><i class="pr normal p-download"></i>Download</span></a>
                 </div>
                 {% endif %}
                 {% if record.url %}
