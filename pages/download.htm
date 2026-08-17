@@ -1,0 +1,51 @@
+url = "/download/:id|^[0-9]+$/:name?"
+title = "Download"
+is_hidden = 0
+robot_index = "noindex"
+robot_follow = "nofollow"
+==
+<?php
+use System\Models\File;
+
+/**
+ * Serves an attached file under a URL that ends with its original file name,
+ * e.g. /download/482/SpongeBoost_flyer_EN.pdf instead of the hashed disk name
+ * /storage/app/uploads/public/a1b/2c3/d45/5f3a1b2c4d.pdf, so that analytics
+ * (Matomo) report the real file name.
+ *
+ * The :name segment is cosmetic - it is only there for the report and for the
+ * browser's suggested file name. Everything is resolved from :id.
+ */
+function onStart()
+{
+	$file = File::find((int) $this->param('id'));
+
+	/*
+	 * Only files that are already publicly reachable are served here. Protected
+	 * attachments keep going through the backend files controller.
+	 */
+	if (!$file || !$file->isPublic()) {
+		return Response::make('File not found', 404);
+	}
+
+	$localPath = $file->getLocalPath();
+
+	if (!file_exists($localPath)) {
+		return Response::make('File not found', 404);
+	}
+
+	/*
+	 * ?inline=1 keeps the previous behaviour of links that opened the file in
+	 * the browser (PDFs opened with target="_blank") instead of saving it.
+	 */
+	$disposition = get('inline') ? 'inline' : 'attachment';
+
+	$headers = [];
+	if ($contentType = $file->getContentType()) {
+		$headers['Content-Type'] = $contentType;
+	}
+
+	return Response::download($localPath, $file->file_name, $headers, $disposition);
+}
+?>
+==

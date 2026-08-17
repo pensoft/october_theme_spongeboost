@@ -11,7 +11,7 @@
                 {% if record.file %}
                 <div class="button_su">
                     <span class="su_button_circle desplode-circle"></span>
-                    <a href="{{record.file.path}}" download="{{record.file.file_name}}" class="btn button_su_inner matomo_download" aria-label="Download {{record.title}}"><span class="button_text_container"><i class="pr normal p-download"></i>Download</span></a>
+                    <a href="{{ 'download'|page({ id: record.file.id, name: record.file.file_name|url_encode }) }}" download="{{record.file.file_name}}" class="btn button_su_inner matomo_download" aria-label="Download {{record.title}}"><span class="button_text_container"><i class="pr normal p-download"></i>Download</span></a>
                 </div>
                 {% endif %}
                 {% if record.url %}

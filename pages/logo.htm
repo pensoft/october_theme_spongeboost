@@ -17,49 +17,9 @@ pageNumber = "{{ :page }}"
 ==
 <?php
 use Pensoft\Media\Models\MediaLogos;
-use System\Models\File;
 
 function onStart(){
 	$this['mediaLogosList'] =  MediaLogos::get();
-	if(get('download')){
-		$file = File::find((int)get('download'));
-		$file_name = $file->getLocalPath();
-
-$ext= $file->getExtension();
-$recordName = get('file_name') ? get('file_name') : 'OBSGESSION_logo.'.$ext;
-
-if (file_exists($file_name)) {
-header('Content-Description: File Transfer');
-header('Content-Type: application/octet-stream');
-header("Content-Type: application/force-download");
-header('Content-Disposition: atntachment; filename='.$recordName);
-header('Content-Transfer-Encoding: binary');
-header('Expires: 0');
-header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-header('Pragma: public');
-header('Content-Length: ' . filesize($file_name));
-ob_clean();
-flush();
-readfile($file_name);
-exit();
-}
-return Redirect::to('/logo');
-}
-}
-
-function onDownloadFile(){
-$file = File::find(post('id'));
-$pathToFile = $file->getLocalPath();
-$fileName = $file->file_name;
-$fileType = $file->content_type;
-$headers = [
-'HTTP/1.1 200 OK',
-'Pragma: public',
-'Content-Type: '.$fileType,
-'Content-Type: application/force-download'
-];
-
-return Response::download($pathToFile, $fileName, $headers);
 }
 ?>
 ==
@@ -93,7 +53,7 @@ return Response::download($pathToFile, $fileName, $headers);
                     {% if record.file_jpg %}
                     <div class="button_su">
                         <span class="su_button_circle desplode-circle" aria-hidden="true"></span>
-                        <a href="{{record.file_jpg.path}}"
+                        <a href="{{ 'download'|page({ id: record.file_jpg.id, name: record.file_jpg.file_name|url_encode }) }}"
                            download="{{record.file_jpg.file_name}}"
                            class="btn button_su_inner matomo_download"
                            aria-label="Download {{record.name}} logo in JPG format">
@@ -107,7 +67,7 @@ return Response::download($pathToFile, $fileName, $headers);
                     {% if record.file_png %}
                     <div class="button_su">
                         <span class="su_button_circle desplode-circle" aria-hidden="true"></span>
-                        <a href="{{record.file_png.path}}"
+                        <a href="{{ 'download'|page({ id: record.file_png.id, name: record.file_png.file_name|url_encode }) }}"
                            download="{{record.file_png.file_name}}"
                            class="btn button_su_inner matomo_download"
                            aria-label="Download {{record.name}} logo in PNG format">
@@ -121,7 +81,7 @@ return Response::download($pathToFile, $fileName, $headers);
                     {% if record.file_eps %}
                     <div class="button_su">
                         <span class="su_button_circle desplode-circle" aria-hidden="true"></span>
-                        <a href="{{record.file_eps.path}}"
+                        <a href="{{ 'download'|page({ id: record.file_eps.id, name: record.file_eps.file_name|url_encode }) }}"
                            download="{{record.file_eps.file_name}}"
                            class="btn button_su_inner matomo_download"
                            aria-label="Download {{record.name}} logo in SVG vector format">
@@ -137,10 +97,10 @@ return Response::download($pathToFile, $fileName, $headers);
                     {% if record.file_pdf %}
                     <div class="button_su">
                         <span class="su_button_circle desplode-circle" aria-hidden="true"></span>
-                        <a href="{{record.file_pdf.path}}"
+                        <a href="{{ 'download'|page({ id: record.file_pdf.id, name: record.file_pdf.file_name|url_encode }) }}?inline=1"
                            target="_blank"
                            rel="noopener noreferrer"
-                           class="btn button_su_inner"
+                           class="btn button_su_inner matomo_download"
                            aria-label="Download {{record.name}} logo in PDF format (opens in new window)">
                         <span class="button_text_container">
                             <i class="pr normal p-download" aria-hidden="true"></i>PDF

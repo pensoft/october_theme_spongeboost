@@ -135,7 +135,7 @@ function onStart(){
                 {% if caseStudy.attachment %}
                 <aside class="case-study-factsheet" aria-label="Case study fact sheet">
                     <p class="case-study-factsheet-text">See the progress of SpongeBoost's work in this case study site</p>
-                    <a class="case-study-factsheet-btn" href="{{ caseStudy.attachment.getPath() }}" target="_blank" rel="noopener noreferrer" download="{{ caseStudy.attachment.file_name }}">
+                    <a class="case-study-factsheet-btn matomo_download" href="{{ 'download'|page({ id: caseStudy.attachment.id, name: caseStudy.attachment.file_name|url_encode }) }}?inline=1" target="_blank" rel="noopener noreferrer">
                         <span>View Fact sheet</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
                             <path d="M5 12h14M13 6l6 6-6 6" stroke="#00292f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
