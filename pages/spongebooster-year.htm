@@ -28,15 +28,41 @@ title = 1
 background = "transperant"
 templates = "template3"
 description_limit = 0
+
+[jumbotron jumbotron5]
+jumbotron = "2026-winner"
+background = "transperant"
+templates = "template3"
+description_limit = 0
 ==
 {% component 'siteSearchInclude' %}
 
 <main id="main-content" role="main">
     <div class="container800">
         <nav class="tabs" role="tablist" aria-label="Award information sections">
-            <a class="tab-link" href="#About" role="tab" aria-selected="true" aria-controls="About" id="tab-about">About</a>
-<!--            <a class="tab-link" href="#ApplyNow" role="tab" aria-selected="false" aria-controls="ApplyNow" id="tab-apply">Apply now</a>-->
-            <a class="tab-link" href="#PreviousWinners" role="tab" aria-selected="false" aria-controls="PreviousWinners" id="tab-winners">Previous winners</a>
+
+            <a
+                type="button"
+                class="tab-link active"
+                role="tab"
+                aria-selected="true"
+                aria-controls="About"
+                id="tab-about"
+                tabindex="0">
+                About
+            </a>
+
+            <a
+                type="button"
+                class="tab-link"
+                role="tab"
+                aria-selected="false"
+                aria-controls="PreviousWinners"
+                id="tab-winners"
+                tabindex="-1">
+                Previous winners
+            </a>
+
         </nav>
     </div>
 
@@ -60,10 +86,83 @@ description_limit = 0
 <!--    <div class="container-fluid apply_now_tab" id="ApplyNow" role="tabpanel" aria-labelledby="tab-apply" hidden>-->
 <!--        {% component 'jumbotron2' %}-->
 <!--    </div>-->
-    <div class="container-fluid previous_winners_tab" id="PreviousWinners" role="tabpanel" aria-labelledby="tab-winners" hidden>
 
-        {% component 'jumbotron3' %}
+    <div
+        class="container-fluid previous_winners_tab"
+        id="PreviousWinners"
+        role="tabpanel"
+        aria-labelledby="tab-winners"
+        tabindex="0"
+        hidden>
+
+
+        <h2>Discover previous winners</h2>
+
+        <!-- Previous winners subtabs -->
+        <div class="container800">
+            <nav
+                class="winner-tabs"
+                role="tablist"
+                aria-label="Previous winners years">
+
+                <button
+                    type="button"
+                    class="winner-tab active"
+                    id="winner-tab-2025"
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="winner-2025"
+                    tabindex="0">
+                    2025
+                </button>
+
+                <button
+                    type="button"
+                    class="winner-tab"
+                    id="winner-tab-2026"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="winner-2026"
+                    tabindex="-1">
+                    2026
+                </button>
+
+            </nav>
+        </div>
+
+
+        <!-- 2025 -->
+        <div
+            class="winner-year winner-year-2025"
+            id="winner-2025"
+            role="tabpanel"
+            aria-labelledby="winner-tab-2025"
+            tabindex="0">
+
+            {% component 'jumbotron3' %}
+
+        </div>
+
+
+        <!-- 2026 -->
+        <div
+            class="winner-year winner-year-2026"
+            id="winner-2026"
+            role="tabpanel"
+            aria-labelledby="winner-tab-2026"
+            tabindex="0"
+            hidden>
+
+            <!-- 2026 content goes here -->
+            {% component 'jumbotron5' %}
+
+
+
+        </div>
+
     </div>
+
+
 </main>
 <!--<div class="container-fluid sponge"  id="SPONGE">-->
 <!--    <div class="container ">-->

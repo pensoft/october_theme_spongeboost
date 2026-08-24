@@ -207,6 +207,8 @@
 .spongebooster-year{
 
 
+
+
     .about_tab{
         img{
             max-height: 370px;
@@ -341,6 +343,10 @@
     .previous_winners_tab{
         background: url("../../assets/images/bubbles2.png") top center no-repeat;
         background-size: 100%;
+
+        .container800{
+            padding: 0;
+        }
         h2{
             font-size: 40px;
             width: 100%;
@@ -425,6 +431,212 @@
     }
 
 }
+
+
+
+
+/* Previous winners - year subtabs */
+.spongebooster-year {
+
+    .winner-tabs {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin: 30px auto 50px auto;
+    }
+
+    .winner-tab {
+        border: 0;
+        background: transparent;
+        padding: 10px 28px;
+        font-family: RedHatDisplay;
+        font-size: 18px;
+        font-weight: 600;
+        color: #737373;
+        cursor: pointer;
+        border-bottom: 3px solid transparent;
+        transition: all 0.2s ease;
+    }
+
+    .winner-tab:hover {
+        color: @green-color;
+    }
+
+    .winner-tab.active,
+    .winner-tab[aria-selected="true"] {
+        color: @green-color;
+        border-bottom-color: @green-color;
+    }
+
+    .winner-tab:focus-visible {
+        outline: 3px solid currentColor;
+        outline-offset: 3px;
+        border-radius: 3px;
+    }
+
+
+    /* 2026 */
+
+    .winner-year-2026 {
+
+        padding-bottom: 80px;
+
+        .text_2026 {
+            text-align: center;
+            font-size: 90px;
+            font-style: normal;
+            font-weight: 900;
+            line-height: normal;
+
+            background: linear-gradient(
+                180deg,
+                rgba(155, 198, 34, 0.2) 22%,
+                #01BDD6 133.85%
+            );
+
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            margin: 0;
+        }
+
+
+        .subtext_2026 {
+            color: #737373;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: normal;
+
+            margin: 17px auto 50px auto;
+        }
+
+
+        .winner-2026-intro {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+
+        .winner-2026-intro .intro_img {
+            width: 465px;
+            height: 465px;
+            max-width: 56%;
+            object-fit: cover;
+            border-radius: 50%;
+            margin: 0 auto 45px auto;
+            display: block;
+        }
+
+
+        .winner-2026-intro h3 {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+
+        .winner-2026-intro p {
+            margin-bottom: 24px;
+        }
+
+
+        .citation-2026 {
+            max-width: 75%;
+            margin: 80px auto;
+        }
+
+
+        .citation-2026 .citation_text {
+            margin: 0 auto;
+            background: url("../../assets/images/quotation-marks.png")
+                top left no-repeat;
+            background-size: 43px;
+
+            color: #464646;
+            text-align: left;
+            font-family: RedHatDisplay;
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+
+            padding-top: 58px;
+        }
+
+
+        .citation-2026 .citation_author {
+            margin: 20px auto;
+            color: #848484;
+            text-align: left;
+            font-family: RedHatDisplay;
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 18px;
+        }
+
+
+        .winner-2026-conclusion {
+            max-width: 900px;
+            margin: 0 auto 80px auto;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+
+        .winner-2026-conclusion p {
+            margin-bottom: 24px;
+        }
+
+
+        .breakpoint-large-down({
+
+            .winner-tabs {
+                margin: 20px auto 35px auto;
+            }
+
+            .winner-tab {
+                padding: 8px 18px;
+                font-size: 16px;
+            }
+
+            .winner-year-2026 {
+
+                .text_2026 {
+                    font-size: 60px;
+                }
+
+                .winner-2026-intro .intro_img {
+                    width: 90%;
+                    margin-bottom: 30px;
+                }
+
+                .winner-2026-intro h3 {
+                    font-size: 26px;
+                }
+
+                .citation-2026 {
+                    max-width: 90%;
+                    margin: 50px auto;
+                }
+
+                .citation-2026 .citation_text {
+                    font-size: 20px;
+                }
+
+                .winner-2026-conclusion {
+                    font-size: 16px;
+                }
+            }
+        });
+    }
+}
+
 
 .first_edition{
     background: url("../../assets/images/bubbles-3.png") top center no-repeat;

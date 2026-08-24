@@ -280,7 +280,7 @@ $(document).ready(function() {
         });
     });
 
-    $('.events_tabs, .spongebooster-year .tabs').each(function(){
+    $('.events_tabs').each(function(){
         // For each set of tabs, we want to keep track of
         // which tab is active and its associated content
         var $active, $content, $links = $(this).find('a');
@@ -357,6 +357,458 @@ $(document).ready(function() {
             e.preventDefault();
         });
     });
+
+
+
+/* =========================================================
+ * SPONGEBOOSTER YEAR TABS
+ * Main tabs:
+ *   About / Previous winners
+ *
+ * Previous winners subtabs:
+ *   2025 / 2026
+ * ========================================================= */
+
+
+    /* ---------------------------------------------------------
+     * MAIN TABS
+     * About / Previous winners
+     * --------------------------------------------------------- */
+
+    $('.spongebooster-year .tabs').each(function () {
+
+        var $tablist = $(this);
+        var $tabs = $tablist.find('[role="tab"]');
+
+        if (!$tabs.length) {
+            return;
+        }
+
+        function activateMainTab($tab, animate) {
+
+            var targetId = $tab.attr('aria-controls');
+            var $target = $('#' + targetId);
+
+            if (!$target.length) {
+                return;
+            }
+
+            var $currentTab = $tabs.filter('.active');
+            var currentId = $currentTab.attr('aria-controls');
+
+            // If the requested tab is already active, do nothing.
+            if (currentId === targetId) {
+                return;
+            }
+
+            // Update tab state
+            $tabs.each(function () {
+
+                var $current = $(this);
+                var isActive = $current.is($tab);
+
+                $current
+                    .toggleClass('active', isActive)
+                    .attr('aria-selected', isActive ? 'true' : 'false')
+                    .attr('tabindex', isActive ? '0' : '-1');
+            });
+
+            var $currentPanel = currentId ? $('#' + currentId) : $();
+
+            if (!$currentPanel.length) {
+                $currentPanel = $tablist
+                    .closest('main')
+                    .find('[role="tabpanel"]')
+                    .filter(':visible')
+                    .first();
+            }
+
+            /*
+             * Animate the transition between the two main panels.
+             *
+             * We use stop(true, true) so clicking quickly does not
+             * queue multiple animations.
+             */
+            if (animate && $currentPanel.length) {
+
+                $currentPanel
+                    .stop(true, true)
+                    .slideUp(250, function () {
+
+                        $currentPanel.prop('hidden', true);
+
+                        $target
+                            .prop('hidden', false)
+                            .hide()
+                            .slideDown(300);
+                    });
+
+            } else {
+
+                $currentPanel
+                    .stop(true, true)
+                    .hide()
+                    .prop('hidden', true);
+
+                $target
+                    .stop(true, true)
+                    .prop('hidden', false)
+                    .show();
+            }
+
+            // Update URL without causing another hashchange event.
+            if (history.replaceState) {
+                history.replaceState(null, '', '#' + targetId);
+            }
+        }
+
+
+        /* ---------------------------------------------------------
+         * INITIAL MAIN TAB
+         * --------------------------------------------------------- */
+
+        var hash = window.location.hash.substring(1);
+
+        var $initialTab = $tabs.filter(
+            '[aria-controls="' + hash + '"]'
+        ).first();
+
+        if (!$initialTab.length) {
+            $initialTab = $tabs.filter('[aria-selected="true"]').first();
+        }
+
+        if (!$initialTab.length) {
+            $initialTab = $tabs.first();
+        }
+
+        /*
+         * Set initial state without animation.
+         */
+        $tabs.each(function () {
+
+            var $tab = $(this);
+            var isActive = $tab.is($initialTab);
+
+            $tab
+                .toggleClass('active', isActive)
+                .attr('aria-selected', isActive ? 'true' : 'false')
+                .attr('tabindex', isActive ? '0' : '-1');
+        });
+
+        $tabs.each(function () {
+
+            var panelId = $(this).attr('aria-controls');
+            var $panel = $('#' + panelId);
+
+            if (!$panel.length) {
+                return;
+            }
+
+            if ($(this).is($initialTab)) {
+                $panel
+                    .prop('hidden', false)
+                    .show();
+            } else {
+                $panel
+                    .prop('hidden', true)
+                    .hide();
+            }
+        });
+
+
+        /* ---------------------------------------------------------
+         * MAIN TAB CLICK
+         * --------------------------------------------------------- */
+
+        $tabs.on('click', function (event) {
+
+            event.preventDefault();
+
+            activateMainTab($(this), true);
+        });
+
+
+        /* ---------------------------------------------------------
+         * MAIN TAB KEYBOARD NAVIGATION
+         * --------------------------------------------------------- */
+
+        $tabs.on('keydown', function (event) {
+
+            var currentIndex = $tabs.index(this);
+            var nextIndex = currentIndex;
+
+            switch (event.key) {
+
+                case 'ArrowRight':
+                case 'ArrowDown':
+                    nextIndex = (currentIndex + 1) % $tabs.length;
+                    break;
+
+                case 'ArrowLeft':
+                case 'ArrowUp':
+                    nextIndex =
+                        (currentIndex - 1 + $tabs.length) %
+                        $tabs.length;
+                    break;
+
+                case 'Home':
+                    nextIndex = 0;
+                    break;
+
+                case 'End':
+                    nextIndex = $tabs.length - 1;
+                    break;
+
+                case 'Enter':
+                case ' ':
+                    event.preventDefault();
+                    activateMainTab($(this), true);
+                    return;
+
+                default:
+                    return;
+            }
+
+            event.preventDefault();
+
+            var $nextTab = $tabs.eq(nextIndex);
+
+            $nextTab.trigger('focus');
+
+            /*
+             * Arrow-key navigation also activates the tab,
+             * following the automatic activation pattern.
+             */
+            activateMainTab($nextTab, true);
+        });
+
+
+        /* ---------------------------------------------------------
+         * PREVIOUS WINNERS SUBTABS
+         * 2025 / 2026
+         * --------------------------------------------------------- */
+
+        var $previousWinners = $('#PreviousWinners');
+
+        if (!$previousWinners.length) {
+            return;
+        }
+
+        var $winnerTablist = $previousWinners.find('.winner-tabs');
+        var $winnerTabs = $winnerTablist.find('[role="tab"]');
+
+        if (!$winnerTabs.length) {
+            return;
+        }
+
+
+        function activateWinnerTab($tab, animate) {
+
+            var targetId = $tab.attr('aria-controls');
+            var $target = $('#' + targetId);
+
+            if (!$target.length) {
+                return;
+            }
+
+            var $currentTab = $winnerTabs.filter('.active');
+            var currentId = $currentTab.attr('aria-controls');
+
+            if (currentId === targetId) {
+                return;
+            }
+
+            var $currentPanel = currentId
+                ? $('#' + currentId)
+                : $();
+
+
+            /* ---------------------------------------------
+             * Update subtab state
+             * --------------------------------------------- */
+
+            $winnerTabs.each(function () {
+
+                var $current = $(this);
+                var isActive = $current.is($tab);
+
+                $current
+                    .toggleClass('active', isActive)
+                    .attr(
+                        'aria-selected',
+                        isActive ? 'true' : 'false'
+                    )
+                    .attr(
+                        'tabindex',
+                        isActive ? '0' : '-1'
+                    );
+            });
+
+
+            /* ---------------------------------------------
+             * Smoothly switch year content
+             * --------------------------------------------- */
+
+            if (animate && $currentPanel.length) {
+
+                $currentPanel
+                    .stop(true, true)
+                    .slideUp(250, function () {
+
+                        $currentPanel.prop('hidden', true);
+
+                        $target
+                            .prop('hidden', false)
+                            .hide()
+                            .slideDown(300);
+                    });
+
+            } else {
+
+                $currentPanel
+                    .stop(true, true)
+                    .hide()
+                    .prop('hidden', true);
+
+                $target
+                    .prop('hidden', false)
+                    .show();
+            }
+
+
+            /*
+             * If Previous winners is represented by the URL,
+             * keep the main hash pointing to PreviousWinners.
+             */
+            if (history.replaceState) {
+                history.replaceState(
+                    null,
+                    '',
+                    '#PreviousWinners'
+                );
+            }
+        }
+
+
+        /* ---------------------------------------------------------
+         * INITIAL SUBTAB
+         * --------------------------------------------------------- */
+
+        var $initialWinnerTab =
+            $winnerTabs.filter('[aria-selected="true"]').first();
+
+        if (!$initialWinnerTab.length) {
+            $initialWinnerTab = $winnerTabs.first();
+        }
+
+
+        $winnerTabs.each(function () {
+
+            var $tab = $(this);
+            var isActive = $tab.is($initialWinnerTab);
+
+            $tab
+                .toggleClass('active', isActive)
+                .attr(
+                    'aria-selected',
+                    isActive ? 'true' : 'false'
+                )
+                .attr(
+                    'tabindex',
+                    isActive ? '0' : '-1'
+                );
+        });
+
+
+        $winnerTabs.each(function () {
+
+            var panelId = $(this).attr('aria-controls');
+            var $panel = $('#' + panelId);
+
+            if (!$panel.length) {
+                return;
+            }
+
+            if ($(this).is($initialWinnerTab)) {
+                $panel
+                    .prop('hidden', false)
+                    .show();
+            } else {
+                $panel
+                    .prop('hidden', true)
+                    .hide();
+            }
+        });
+
+
+        /* ---------------------------------------------------------
+         * SUBTAB CLICK
+         * --------------------------------------------------------- */
+
+        $winnerTabs.on('click', function (event) {
+
+            event.preventDefault();
+
+            activateWinnerTab($(this), true);
+        });
+
+
+        /* ---------------------------------------------------------
+         * SUBTAB KEYBOARD NAVIGATION
+         * --------------------------------------------------------- */
+
+        $winnerTabs.on('keydown', function (event) {
+
+            var currentIndex = $winnerTabs.index(this);
+            var nextIndex = currentIndex;
+
+            switch (event.key) {
+
+                case 'ArrowRight':
+                case 'ArrowDown':
+                    nextIndex =
+                        (currentIndex + 1) %
+                        $winnerTabs.length;
+                    break;
+
+                case 'ArrowLeft':
+                case 'ArrowUp':
+                    nextIndex =
+                        (currentIndex - 1 +
+                            $winnerTabs.length) %
+                        $winnerTabs.length;
+                    break;
+
+                case 'Home':
+                    nextIndex = 0;
+                    break;
+
+                case 'End':
+                    nextIndex = $winnerTabs.length - 1;
+                    break;
+
+                case 'Enter':
+                case ' ':
+                    event.preventDefault();
+                    activateWinnerTab($(this), true);
+                    return;
+
+                default:
+                    return;
+            }
+
+            event.preventDefault();
+
+            var $nextTab = $winnerTabs.eq(nextIndex);
+
+            $nextTab.trigger('focus');
+
+            activateWinnerTab($nextTab, true);
+        });
+
+    });
+
+
 
 
     /* buttons */
