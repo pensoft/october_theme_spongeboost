@@ -57,6 +57,17 @@ description_limit = 0
                 class="tab-link"
                 role="tab"
                 aria-selected="false"
+                aria-controls="Nominate"
+                id="tab-nominate"
+                tabindex="-1">
+                Nominate
+            </a>
+
+            <a
+                type="button"
+                class="tab-link"
+                role="tab"
+                aria-selected="false"
                 aria-controls="PreviousWinners"
                 id="tab-winners"
                 tabindex="-1">
@@ -83,9 +94,9 @@ description_limit = 0
             </div>
         </figure>
     </div>
-<!--    <div class="container-fluid apply_now_tab" id="ApplyNow" role="tabpanel" aria-labelledby="tab-apply" hidden>-->
-<!--        {% component 'jumbotron2' %}-->
-<!--    </div>-->
+    <div class="container-fluid apply_now_tab" id="Nominate" role="tabpanel" aria-labelledby="tab-nominate" hidden>
+        {% component 'jumbotron2' %}
+    </div>
 
     <div
         class="container-fluid previous_winners_tab"
